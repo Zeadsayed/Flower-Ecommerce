@@ -29,11 +29,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.css",
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
