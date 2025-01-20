@@ -1,4 +1,4 @@
-export const AppRoutes = {
+export const ApiRoutes = {
   home: {
     categories: 'categories',
   },
