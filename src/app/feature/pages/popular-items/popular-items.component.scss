@@ -1,0 +1,21 @@
+.active {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.list li a {
+  color: var(--dark-blue);
+  font-size: 20px;
+  line-height: 24.2px;
+  font-weight: 400;
+  &:hover {
+    border-color: var(--primary-color);
+  }
+}
+
+.head-title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36.31px;
+  color: var(--dark-blue);
+}
