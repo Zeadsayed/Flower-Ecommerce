@@ -6,11 +6,11 @@ export const routes: Routes = [
     children:[
         {path:'', pathMatch:'full', canActivate:[],
             loadChildren: ()=>
-                import('./feature/pages/home/home.route').then((m)=>m.routes)
+                import('./features/pages/home/home.route').then((m)=>m.routes)
         },
         {path:'home', canActivate:[],
             loadChildren: ()=>
-                import('./feature/pages/home/home.route').then((m)=>m.routes)        }
+                import('./features/pages/home/home.route').then((m)=>m.routes)        }
 
         ]
     }

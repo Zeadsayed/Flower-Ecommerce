@@ -6,3 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities{
+
+    .text-primary{
+
+        color: #F82BA9;
+    }
+}
