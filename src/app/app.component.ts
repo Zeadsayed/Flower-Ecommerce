@@ -9,7 +9,7 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'Flower-Ecommerce';
+  title = 'ROSE happy gift';
   ngOnInit(): void {
     initFlowbite();
   }
