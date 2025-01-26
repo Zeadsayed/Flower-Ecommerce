@@ -9,6 +9,15 @@ export const routes: Routes = [
         title: 'Home',
       }
 
+    },
+    {
+      path: 'home',
+      loadComponent: () =>
+        import('./home-main/home-main.component').then((m) => m.HomeMainComponent),
+      data: {
+        title: 'Home',
+      }
+
     }
   ];
 
