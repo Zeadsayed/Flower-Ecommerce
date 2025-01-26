@@ -1,6 +1,7 @@
 .card {
   width: 302px;
-  height: 272px;
+
+  margin-bottom: 20px;
   .cover {
     border-radius: 20px;
     background-color: var(--secondary-color);
@@ -11,5 +12,26 @@
       width: 222px;
       height: 222px;
     }
+  }
+  .item-title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20.4px;
+    color: var(--dark-blue);
+  }
+  .price {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28.8px;
+    color: var(--primary-color);
+  }
+  .bag-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #8c52ff;
   }
 }
