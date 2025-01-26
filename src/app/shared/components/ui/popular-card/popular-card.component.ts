@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BestSellerItem } from '../../../../core/interfaces/home-main/BestSeller';
-
+import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'popular-card',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './popular-card.component.html',
   styleUrl: './popular-card.component.scss',
 })
