@@ -1,6 +1,7 @@
 export const ApiRoutes = {
   home: {
     categories: 'categories',
-    bsetSeller: 'best-seller',
+    bestSeller: 'best-seller',
+    products: 'products',
   },
 };

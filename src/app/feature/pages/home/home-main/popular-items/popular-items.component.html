@@ -10,25 +10,19 @@
     <div
       class="text-sm font-medium text-center text-gray-500 flex justify-self-end dark:text-gray-400 dark:border-gray-700">
       <ul class="flex flex-wrap -mb-px list">
+        @for (category of allCategories.slice(0,4); track category) {
         <li class="me-2">
-          <a href="#" class="inline-block p-4 pb-1 border-b-2 border-transparent rounded-t-lg ">Flowers</a>
+          <a (click)="getCategoryProducts(category._id)" routerLinkActive="border-b-2 border-primary"
+            class="inline-block p-4 pb-1 border-b-2 border-transparent rounded-t-lg cursor-pointer">{{category.name}}</a>
         </li>
-        <li class="me-2">
-          <a href="#" class="inline-block p-4 pb-1  border-b-2 rounded-t-lg active" aria-current="page">Gifts</a>
-        </li>
-        <li class="me-2">
-          <a href="#" class="inline-block p-4 pb-1 border-b-2 border-transparent rounded-t-lg ">Cakes</a>
-        </li>
-        <li class="me-2">
-          <a href="#" class="inline-block p-4 pb-1 border-b-2 border-transparent rounded-t-lg ">Plants</a>
-        </li>
+        }
       </ul>
     </div>
 
   </div>
 
 
-  <popular-card [items]="allBestItems"></popular-card>
+  <popular-card [items]="allProducts"></popular-card>
   <!-- @for (item of allBestItems; track item) {
     <popular-card [imageSrc]="item.imageSrc" [title]="item.title" [description]="item.description" [price]="item.price"
       (addToCart)="handleAddToCart(item)"></popular-card>

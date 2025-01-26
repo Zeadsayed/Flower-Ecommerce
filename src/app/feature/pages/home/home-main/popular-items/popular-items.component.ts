@@ -3,6 +3,7 @@ import { PopularCardComponent } from '../../../../../shared/components/ui/popula
 import { Category } from '../../../../../core/interfaces/home-main/category';
 import { CategoriesService } from '../../../../services/home-main/categories.service';
 import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSeller';
+import { Prosucts } from '../../../../../core/interfaces/home-main/Products';
 
 @Component({
   selector: 'app-popular-items',
@@ -11,12 +12,11 @@ import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSel
   styleUrl: './popular-items.component.scss',
 })
 export class PopularItemsComponent implements OnInit {
-  @Input() items: any[] = [];
-
   private categories = inject(CategoriesService);
 
   allCategories: Category[] = [];
   allBestItems: BestSellerItem[] = [];
+  allProducts: Prosucts[] = [];
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -42,6 +42,17 @@ export class PopularItemsComponent implements OnInit {
     this.categories.getBestSellerItems().subscribe({
       next: (data: any) => {
         this.allBestItems = data.bestSeller;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+
+  getCategoryProducts(id: string) {
+    this.categories.getAllProducts({ category: id }).subscribe({
+      next: (data: any) => {
+        this.allProducts = data.products;
       },
       error: (error: any) => {
         console.log(error);
