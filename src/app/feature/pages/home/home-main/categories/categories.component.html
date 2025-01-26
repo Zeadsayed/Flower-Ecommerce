@@ -1,14 +1,14 @@
 <div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 category-slider">
-    <owl-carousel-o [options]="customOptions">
-        @for (item of allCategories; track $index) {
-        <ng-container>
-            <ng-template carouselSlide>
+  <owl-carousel-o [options]="customOptions">
+    @for (item of allCategories; track $index) {
+    <ng-container>
+      <ng-template carouselSlide>
 
-                <app-category-card [title]="item.name" [items]="item.productsCount" [icon]="item.image"
-                    (cardClick)="onCardSelected()"></app-category-card>
-            </ng-template>
-        </ng-container>
-        }
-    </owl-carousel-o>
+        <app-category-card [title]="item.name" [items]="item.productsCount" [icon]="item.image"
+          (cardClick)="onCardSelected()"></app-category-card>
+      </ng-template>
+    </ng-container>
+    }
+  </owl-carousel-o>
 
 </div>
