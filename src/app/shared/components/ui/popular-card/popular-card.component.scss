@@ -1,0 +1,15 @@
+.card {
+  width: 302px;
+  height: 272px;
+  .cover {
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 222px;
+      height: 222px;
+    }
+  }
+}
