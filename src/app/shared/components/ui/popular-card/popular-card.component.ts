@@ -14,6 +14,10 @@ export class PopularCardComponent {
   // @Input() price: number = 0;
 
   @Input() items: BestSellerItem[] = [];
+  @Input() badge: string = '';
+  @Input() imgCover: string = '';
+  @Input() title: string = '';
+  @Input() price: number = 0;
 
   @Output() addToCart = new EventEmitter<void>();
 
