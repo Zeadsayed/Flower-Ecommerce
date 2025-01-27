@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { PopularCardComponent } from '../../../../../shared/components/ui/popular-card/popular-card.component';
 import { Category } from '../../../../../core/interfaces/home-main/category';
 import { CategoriesService } from '../../../../services/home-main/categories.service';
@@ -13,6 +13,7 @@ import { Prosucts } from '../../../../../core/interfaces/home-main/Products';
 })
 export class PopularItemsComponent implements OnInit {
   private categories = inject(CategoriesService);
+  activeCategory: string | null = null; // Initialize with null or default category ID
 
   allCategories: Category[] = [];
   allBestItems: BestSellerItem[] = [];
@@ -20,28 +21,12 @@ export class PopularItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategories();
-    this.gePestSellerItems();
-  }
-
-  onCardSelected(): void {
-    console.log('Card clicked!');
   }
 
   getAllCategories() {
     this.categories.getAllCategories().subscribe({
       next: (data: any) => {
         this.allCategories = data.categories;
-      },
-      error: (error: any) => {
-        console.log(error);
-      },
-    });
-  }
-
-  gePestSellerItems() {
-    this.categories.getBestSellerItems().subscribe({
-      next: (data: any) => {
-        this.allBestItems = data.bestSeller;
       },
       error: (error: any) => {
         console.log(error);
@@ -59,7 +44,9 @@ export class PopularItemsComponent implements OnInit {
       },
     });
   }
-  handleAddToCart(item: any) {
-    console.log('Added to cart:', item);
+
+  setActiveCategory(categoryId: string): void {
+    this.activeCategory = categoryId;
+    this.getCategoryProducts(categoryId);
   }
 }

@@ -1,6 +1,5 @@
 <div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 ">
   <div class="grid sm:grid-cols-2 items-center p-6">
-
     <div class="relative inline-block">
       <span class="relative z-10 head-title">Popular Items</span>
       <div class="bgk"></div>
@@ -12,19 +11,12 @@
       <ul class="flex flex-wrap -mb-px list">
         @for (category of allCategories.slice(0,4); track category) {
         <li class="me-2">
-          <a (click)="getCategoryProducts(category._id)" routerLinkActive="border-b-2 border-primary"
+          <a (click)="setActiveCategory(category._id)" [class.active]="activeCategory === category._id"
             class="inline-block p-4 pb-1 border-b-2 border-transparent rounded-t-lg cursor-pointer">{{category.name}}</a>
         </li>
         }
       </ul>
     </div>
-
   </div>
 
-
   <popular-card [items]="allProducts"></popular-card>
-  <!-- @for (item of allBestItems; track item) {
-    <popular-card [imageSrc]="item.imageSrc" [title]="item.title" [description]="item.description" [price]="item.price"
-      (addToCart)="handleAddToCart(item)"></popular-card>
-    }
-  </div> -->
