@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
-import {  ISpecialGifts } from './../../../core/interfaces/special-gifts-interface';
-import { Component, Input, input } from '@angular/core';
+import {  ISpecialGifts } from '../../../../../core/interfaces/special-gifts-interface';
+import { Component, Input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 
