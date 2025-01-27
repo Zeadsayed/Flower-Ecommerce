@@ -8,12 +8,6 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './popular-card.component.scss',
 })
 export class PopularCardComponent {
-  // @Input() imageSrc: string = '';
-  // @Input() title: string = '';
-  // @Input() description: string = '';
-  // @Input() price: number = 0;
-
-  @Input() items: BestSellerItem[] = [];
   @Input() badge: string = '';
   @Input() imgCover: string = '';
   @Input() title: string = '';
