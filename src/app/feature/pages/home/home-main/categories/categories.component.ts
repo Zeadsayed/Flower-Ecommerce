@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CategoryCardComponent } from '../../../../../shared/components/ui/category-card/category-card.component';
 import { CategoriesService } from '../../../../services/home-main/categories.service';
 import { Category } from '../../../../../core/interfaces/home-main/category';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -10,10 +11,11 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
   private categories = inject(CategoriesService);
 
   allCategories: Category[] = [];
+  subscription: Subscription[] = [];
 
   customOptions: OwlOptions = {
     loop: false,
@@ -48,7 +50,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getAllCategories() {
-    this.categories.getAllCategories().subscribe({
+    let sub = this.categories.getAllCategories().subscribe({
       next: (data) => {
         this.allCategories = data.categories;
       },
@@ -56,5 +58,10 @@ export class CategoriesComponent implements OnInit {
         console.log(error);
       },
     });
+    this.subscription.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription && this.subscription.forEach((s) => s.unsubscribe());
   }
 }

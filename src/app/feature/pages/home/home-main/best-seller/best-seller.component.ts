@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { PopularCardComponent } from '../../../../../shared/components/ui/popular-card/popular-card.component';
 import { BestSellerService } from '../../../../services/home-main/best-seller.service';
 import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSeller';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-best-seller',
@@ -10,10 +11,11 @@ import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSel
   templateUrl: './best-seller.component.html',
   styleUrl: './best-seller.component.scss',
 })
-export class BestSellerComponent implements OnInit {
+export class BestSellerComponent implements OnInit, OnDestroy {
   private categories = inject(BestSellerService);
 
   allBestSeller: BestSellerItem[] = [];
+  subscription: Subscription[] = [];
 
   customOptions: OwlOptions = {
     loop: false,
@@ -40,11 +42,11 @@ export class BestSellerComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.gePestSellerItems();
+    this.getBestSellerItems();
   }
 
-  gePestSellerItems() {
-    this.categories.getBestSellerItems().subscribe({
+  getBestSellerItems() {
+    let sub = this.categories.getBestSellerItems().subscribe({
       next: (data) => {
         this.allBestSeller = data.bestSeller;
       },
@@ -52,5 +54,10 @@ export class BestSellerComponent implements OnInit {
         console.log(error);
       },
     });
+    this.subscription.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription && this.subscription.forEach((s) => s.unsubscribe());
   }
 }
