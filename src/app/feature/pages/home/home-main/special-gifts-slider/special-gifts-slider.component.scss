@@ -1,0 +1,92 @@
+@import url('../../../../../../../public/scss/base/_variables.scss');
+
+:host ::ng-deep {
+  owl-carousel-o {
+    .owl-theme {
+      // Custom Navigation Arrows
+      .owl-nav {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        .owl-prev,
+        .owl-next {
+          width: 41px;
+          height: 41px;
+          background-color: white;
+          border-radius: 50%; // Fully rounded
+          color: var(--primary-color);
+          font-size: 20px;
+        
+          // Disable hover effects
+          &:hover {
+            background-color: white;
+            color: black;
+          }
+        }
+
+        
+      }
+
+      // Custom Dots
+      .owl-dots {
+        text-align: center;
+        margin-top: 1rem;
+        position: absolute;
+        bottom: 25px;
+        right: 47%;
+        .owl-dot {
+          span {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color); // Default dot color
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+          }
+
+          &.active {
+            span {
+              width: 24px; // Active dot width
+              background-color: var(--primary-color); // Active dot color
+              border-radius: 5px; // Slightly rounded rectangle for active dot
+            }
+          }
+
+         
+        }
+      }
+    }
+  }
+}
+
+h4 {
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+h2{
+
+  color: rgba(22, 14, 75, 1);
+  font-size: 45px;
+  font-weight: 700;
+  line-height:50.33px;
+
+}
+
+span{
+  color: var(--primary-color);
+
+
+}
+
+p{
+  color: rgba(22, 14, 75, 1);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: 'inter';
+
+  
+}

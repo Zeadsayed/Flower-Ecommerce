@@ -4,7 +4,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoryResponse } from '../../../core/interfaces/home-main/category';
 import { ApiRoutes } from '../../../core/interfaces/apiRoutes';
-import { BestSellerResponse } from '../../../core/interfaces/home-main/BestSeller';
 import { ProsuctsResponse } from '../../../core/interfaces/home-main/Products';
 
 @Injectable({
@@ -21,23 +20,19 @@ export class CategoriesService {
     );
   }
 
-  getBestSellerItems(): Observable<BestSellerResponse> {
-    return this.http.get<BestSellerResponse>(
-      this.env + ApiRoutes.home.bestSeller
-    );
-  }
-
-  getAllProducts(params: {
+  getAllProducts(params?: {
     [key: string]: string | number | boolean;
   }): Observable<ProsuctsResponse> {
     let httpParams = new HttpParams();
 
     // Append each key-value pair dynamically to the HttpParams object
-    Object.keys(params).forEach((key) => {
-      httpParams = httpParams.set(key, params[key].toString());
-    });
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        httpParams = httpParams.set(key, params[key].toString());
+      });
+    }
     return this.http.get<ProsuctsResponse>(this.env + ApiRoutes.home.products, {
-      params: httpParams,
+      params: httpParams ? httpParams : undefined,
     });
   }
 }
