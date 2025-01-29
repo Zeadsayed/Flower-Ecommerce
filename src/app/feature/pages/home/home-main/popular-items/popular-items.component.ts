@@ -4,10 +4,11 @@ import { Category } from '../../../../../core/interfaces/home-main/category';
 import { CategoriesService } from '../../../../services/home-main/categories.service';
 import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSeller';
 import { Prosucts } from '../../../../../core/interfaces/home-main/Products';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-popular-items',
-  imports: [PopularCardComponent],
+  imports: [PopularCardComponent, CommonModule],
   templateUrl: './popular-items.component.html',
   styleUrl: './popular-items.component.scss',
 })

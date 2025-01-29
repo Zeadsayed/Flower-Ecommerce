@@ -4,8 +4,8 @@
     <ng-container>
       <ng-template carouselSlide>
 
-        <app-category-card [title]="item.name" [items]="item.productsCount" [icon]="item.image"
-          (cardClick)="onCardSelected()"></app-category-card>
+        <app-category-card class="flex justify-center" [title]="item.name" [items]="item.productsCount"
+          [icon]="item.image" (cardClick)="onCardSelected()"></app-category-card>
       </ng-template>
     </ng-container>
     }
