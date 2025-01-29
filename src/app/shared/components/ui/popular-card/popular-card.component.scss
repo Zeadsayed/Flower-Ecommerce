@@ -1,15 +1,74 @@
 .card {
-  width: 302px;
-  height: 272px;
+  // position: absolute;
   .cover {
+    position: relative;
     border-radius: 20px;
     background-color: var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      width: 222px;
-      height: 222px;
+    &:hover {
+      #overlay {
+        display: block;
+      }
     }
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 57px;
+      height: 24px;
+      padding: 2px 15px 25px 12px;
+      border-radius: 50px;
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      -ms-border-radius: 50px;
+      -o-border-radius: 50px;
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    img {
+      width: 302px;
+      height: 272px;
+    }
+    #overlay {
+      border-radius: 20px;
+      position: absolute; /* Sit on top of the page content */
+      display: none;
+      width: 100%; /* Full width (cover the whole page) */
+      height: 100%; /* Full height (cover the whole page) */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(
+        --primary-color
+      ); /* Black background with opacity */
+      z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+      cursor: pointer; /* Add a pointer on hover */
+      opacity: 0.5;
+    }
+  }
+  .item-title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20.4px;
+    color: var(--dark-blue);
+  }
+  .price {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28.8px;
+    color: var(--primary-color);
+  }
+  .bag-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #8c52ff;
+    box-shadow: 0px 0px 40px 5px #0000000d;
   }
 }
