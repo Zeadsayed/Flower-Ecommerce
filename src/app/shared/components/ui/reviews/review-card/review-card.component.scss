@@ -1,0 +1,40 @@
+.review-card {
+  width: 302px;
+  height: 344px;
+  border-radius: 50px 100px 100px 100px;
+  background-color: #fff;
+  padding: 25px 20px;
+  .user-info {
+    display: flex;
+    align-items: center;
+    .user-image {
+      margin-right: 25px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+    .user-content {
+      .user-name {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 20.57px;
+        color: var(--dark-blue);
+      }
+      .user-role {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 20.57px;
+        color: var(--primary-color);
+      }
+    }
+  }
+}
