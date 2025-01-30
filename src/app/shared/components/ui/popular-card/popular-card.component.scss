@@ -3,7 +3,7 @@
   .cover {
     position: relative;
     border-radius: 20px;
-    background-color: var(--secondary-color);
+    // background-color: var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,6 +30,7 @@
     img {
       width: 302px;
       height: 272px;
+      border-radius: 20px;
     }
     #overlay {
       border-radius: 20px;

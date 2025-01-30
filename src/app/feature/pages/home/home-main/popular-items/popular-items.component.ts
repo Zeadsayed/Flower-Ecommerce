@@ -52,7 +52,7 @@ export class PopularItemsComponent implements OnInit {
     const params: { [key: string]: string | number | boolean } = id
       ? { category: id }
       : {};
-    this.categories.getAllProducts(params).subscribe({
+    this.categories.getCategoryProducts(params).subscribe({
       next: (data: any) => {
         this.allProducts = data.products;
       },

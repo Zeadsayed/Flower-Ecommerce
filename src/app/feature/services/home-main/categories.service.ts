@@ -20,7 +20,7 @@ export class CategoriesService {
     );
   }
 
-  getAllProducts(params?: {
+  getCategoryProducts(params?: {
     [key: string]: string | number | boolean;
   }): Observable<ProsuctsResponse> {
     let httpParams = new HttpParams();
