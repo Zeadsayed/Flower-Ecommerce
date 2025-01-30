@@ -16,6 +16,7 @@ export class BestSellerComponent implements OnInit, OnDestroy {
 
   allBestSeller: BestSellerItem[] = [];
   subscription: Subscription[] = [];
+  badge: string = '';
 
   customOptions: OwlOptions = {
     loop: false,
@@ -49,6 +50,15 @@ export class BestSellerComponent implements OnInit, OnDestroy {
     let sub = this.categories.getBestSellerItems().subscribe({
       next: (data) => {
         this.allBestSeller = data.bestSeller;
+        this.allBestSeller.map((el) => {
+          if (el.quantity > 0) {
+            this.badge = 'OUT OF STOCK';
+          } else if (el.quantity == 0) {
+            this.badge = 'HOT';
+          } else {
+            this.badge = 'NEW';
+          }
+        });
       },
       error: (error: any) => {
         console.log(error);
