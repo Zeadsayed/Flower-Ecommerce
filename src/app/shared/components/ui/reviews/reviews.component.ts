@@ -14,8 +14,8 @@ export class ReviewsComponent {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
-    nav: false,
+    dots: true,
+    nav: true,
     navSpeed: 1200,
     responsive: {
       0: {
