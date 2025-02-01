@@ -1,0 +1,32 @@
+
+.btn {
+    z-index: 1;
+    border: none;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: fit-content;
+    max-width: none !important;
+    cursor: pointer;
+    font: {
+      weight: 500;
+      size: 14px;
+    }
+
+}
+
+.btn-primary {
+    @extend .btn; 
+    color: white;
+    background-color: var(--primary-color);
+  }
+.btn-rounded {
+    @extend .btn; 
+    @extend .btn-primary;
+    padding: 8px 20px; 
+    border-radius: 30px; 
+}
