@@ -1,0 +1,12 @@
+<div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 category-slider p-4">
+    <div class="grid">
+        <div class="grid lg:grid-cols-4 sm:grid-cols-2">zzz</div>
+        <div class="grid lg:grid-cols-4 sm:grid-cols-2">
+            @for (product of allProducts; track $index) {
+            <popular-card [imgCover]="product.imgCover" [title]="product.title" [title]="product.title"
+                [price]="product.price" (addToCart)="handleAddToCart(product)"></popular-card>
+            }
+        </div>
+    </div>
+
+</div>

@@ -1,10 +1,10 @@
 // home.route.ts
 import { Routes } from '@angular/router';
-import { HomeMainComponent } from './home-main.component';
+import { AllCategoryComponent } from './all-category.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeMainComponent,
+    component: AllCategoryComponent,
   },
 ];
