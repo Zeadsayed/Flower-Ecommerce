@@ -1,11 +1,11 @@
-<div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 category-slider p-4">
+<div class="max-w-screen-xl  xl:mx-auto lg:mx-auto m-4 category-slider p-4">
   <owl-carousel-o [options]="customOptions">
     @for (item of allCategories; track $index) {
     <ng-container>
       <ng-template carouselSlide>
 
-        <app-category-card class="flex justify-center" [title]="item.name" [items]="item.productsCount"
-          [icon]="item.image" (cardClick)="onCardSelected()"></app-category-card>
+        <app-category-card [title]="item.name" [items]="item.productsCount" [icon]="item.image"
+          (cardClick)="onCardSelected()"></app-category-card>
       </ng-template>
     </ng-container>
     }

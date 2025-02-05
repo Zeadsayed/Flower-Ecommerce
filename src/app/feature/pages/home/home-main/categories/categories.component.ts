@@ -36,6 +36,9 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         items: 4,
       },
       940: {
+        items: 4,
+      },
+      1200: {
         items: 5,
       },
     },
