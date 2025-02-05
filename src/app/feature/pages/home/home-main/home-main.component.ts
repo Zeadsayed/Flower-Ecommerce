@@ -6,22 +6,19 @@ import { TrustCompaniesComponent } from './trust-companies/trust-companies.compo
 import { BestSellerComponent } from './best-seller/best-seller.component';
 import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
+import { ModalComponent } from '../../../../shared/components/ui/modal/modal.component';
 
 @Component({
   selector: 'app-home-main',
   imports: [
     CategoriesComponent,
-
     PopularItemsComponent,
-
     DeliveryInfoComponent,
-
     TrustCompaniesComponent,
-
     SpecialGiftsComponent,
     ReviewsComponent,
-
     BestSellerComponent,
+    ModalComponent,
   ],
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.scss',

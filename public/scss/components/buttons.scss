@@ -1,32 +1,51 @@
-
 .btn {
-    z-index: 1;
-    border: none;
-    padding: 10px 20px;
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    width: fit-content;
-    max-width: none !important;
-    cursor: pointer;
-    font: {
-      weight: 500;
-      size: 14px;
-    }
-
+  z-index: 1;
+  border: none;
+  padding: 10px 20px;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: fit-content;
+  max-width: none !important;
+  cursor: pointer;
+  font: {
+    weight: 500;
+    size: 14px;
+  }
 }
 
 .btn-primary {
-    @extend .btn; 
-    color: white;
-    background-color: var(--primary-color);
-  }
+  @extend .btn;
+  color: white;
+  background-color: var(--primary-color);
+}
 .btn-rounded {
-    @extend .btn; 
-    @extend .btn-primary;
-    padding: 8px 20px; 
-    border-radius: 30px; 
+  @extend .btn;
+  @extend .btn-primary;
+  padding: 8px 20px;
+  border-radius: 30px;
+}
+
+.auth-button {
+  width: 470px;
+  height: 50px;
+  padding: 0px 31px 0px 31px;
+  gap: 8px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  color: white;
+  background-color: var(--primary-color);
+  font-family: var(--font-inter);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 50px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
