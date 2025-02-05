@@ -6,6 +6,7 @@ import { TrustCompaniesComponent } from './trust-companies/trust-companies.compo
 import { BestSellerComponent } from './best-seller/best-seller.component';
 import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
+import { AboutComponent } from './about/about.component';
 
 @Component({
   selector: 'app-home-main',
@@ -22,6 +23,7 @@ import { ReviewsComponent } from '../../../../shared/components/ui/reviews/revie
     ReviewsComponent,
 
     BestSellerComponent,
+    AboutComponent
   ],
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.scss',
