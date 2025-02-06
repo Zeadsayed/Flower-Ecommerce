@@ -10,11 +10,26 @@
 
 <app-modal modalId="login">
     <div modal-header class="p-4">
+        @if (isSignIn) {
         <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
             Login to your account
         </h1>
+        } @else if (forgetPass) {
+        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            Forgot Your Password ?
+        </h1>
+        } @else if (forgetPass) {
+        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            Verify Code
+        </h1>
+        } @else if (verify) {
+        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            Set a Password
+        </h1>
+        }
     </div>
     <div modal-body class="p-4">
+        @if (isSignIn) {
         <form class="space-y-4">
             <div>
                 <input type="email" name="email" id="email"
@@ -22,8 +37,6 @@
                     placeholder="Email" />
             </div>
             <div>
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                    password</label>
                 <input type="password" name="password" id="password" placeholder="Password"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
             </div>
@@ -36,7 +49,7 @@
                     <label for="remember" class="ms-2 remind">Remind
                         me</label>
                 </div>
-                <button class="text-sm forgetPassword hover:underline">Forgot
+                <button type="button" (click)="forgetPassword()" class="text-sm forgetPassword hover:underline">Forgot
                     Password
                 </button>
             </div>
@@ -45,8 +58,42 @@
                     Create one here
                 </button>
             </div>
-            <button type="submit" class="auth-button">Login
+            <button type="button" class="auth-button">Login
             </button>
         </form>
+        } @else if (forgetPass) {
+        <form class="space-y-4">
+            <div>
+                <input type="email" name="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="Email" />
+            </div>
+            <button class="auth-button" type="button" (click)="recoverPassword()">Recover Password
+            </button>
+        </form>
+        } @else if (forgetPass) {
+        <form class="space-y-4">
+            <div>
+                <input type="number" name="number" id="number"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="Enter Code" />
+            </div>
+            <button class="auth-button" type="button" (click)="verifyCode()">Verify
+            </button>
+        </form>
+        } @else if (verify) {
+        <form class="space-y-4">
+            <div>
+                <input type="password" name="newPassword" id="newPassword" placeholder="Create Password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+            </div>
+            <div>
+                <input type="password" name="rePassword" id="rePassword" placeholder="Re-enter Password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+            </div>
+            <button class="auth-button" type="button" (click)="setPassword()">Set a Password
+            </button>
+        </form>
+        }
     </div>
 </app-modal>

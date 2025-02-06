@@ -23,4 +23,37 @@ import { ModalComponent } from '../../../../shared/components/ui/modal/modal.com
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.scss',
 })
-export class HomeMainComponent {}
+export class HomeMainComponent {
+  isSignIn: boolean = true;
+  forgetPass: boolean = false;
+  verify: boolean = false;
+  setPass: boolean = false;
+
+  forgetPassword() {
+    this.isSignIn = false;
+    this.verify = false;
+    this.setPass = false;
+    this.forgetPass = true;
+  }
+
+  recoverPassword() {
+    this.isSignIn = false;
+    this.verify = true;
+    this.setPass = false;
+    this.forgetPass = false;
+  }
+
+  verifyCode() {
+    this.isSignIn = false;
+    this.verify = false;
+    this.setPass = true;
+    this.forgetPass = false;
+  }
+
+  setPassword() {
+    this.isSignIn = true;
+    this.verify = false;
+    this.setPass = false;
+    this.forgetPass = false;
+  }
+}

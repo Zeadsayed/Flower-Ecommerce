@@ -16,7 +16,7 @@ export class ModalComponent {
   private modalSubscription!: Subscription;
 
   @Input() modalId: string = 'default-modal'; // Unique ID for multiple modals
-  @Input() closable: boolean = true; // Allow closing via clicking outside
+  @Input() closable: boolean = false; // Allow closing via clicking outside
 
   private modalService = inject(ModalService);
 
