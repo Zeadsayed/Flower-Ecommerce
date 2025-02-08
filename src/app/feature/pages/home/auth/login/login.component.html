@@ -1,0 +1,32 @@
+<form class="space-y-4">
+    <div>
+        <input type="email" name="email" id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            placeholder="Email" />
+    </div>
+    <div>
+        <input type="password" name="password" id="password" placeholder="Password"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+    </div>
+    <div class="flex justify-between">
+        <div class="flex items-start">
+            <div class="flex items-center h-5">
+                <input id="remember" type="checkbox" value=""
+                    class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+            </div>
+            <label for="remember" class="remind text-sm ms-2 leading-5 text-left font-normal">Remind
+                me</label>
+        </div>
+        <button type="button" (click)="forgetPassword()"
+            class="forgetPassword text-sm text-left font-semibold  leading-5 hover:underline">Forgot
+            Password
+        </button>
+    </div>
+    <div class="text-sm text-center font-medium text-gray-500 dark:text-gray-300">
+        No account? <button type="button" class="register text-sm hover:underline text-left leading-5 font-semibold">
+            Create one here
+        </button>
+    </div>
+    <button type="button" class="auth-button">Login
+    </button>
+</form>

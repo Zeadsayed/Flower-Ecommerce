@@ -1,0 +1,18 @@
+<app-modal modalId="login">
+    <div modal-header class="p-4">
+        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            {{title}}
+        </h1>
+    </div>
+    <div modal-body class="p-4">
+        @if (isSignIn) {
+        <app-login (changeState)="toggleState($event)" />
+        } @else if (forgetPass) {
+        <app-forget-password (changeState)="toggleState($event)" />
+        } @else if (verify) {
+        <app-verify (changeState)="toggleState($event)" />
+        } @else if (setPass) {
+        <app-set-password (changeState)="toggleState($event)" />
+        }
+    </div>
+</app-modal>

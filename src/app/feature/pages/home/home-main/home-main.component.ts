@@ -6,7 +6,7 @@ import { TrustCompaniesComponent } from './trust-companies/trust-companies.compo
 import { BestSellerComponent } from './best-seller/best-seller.component';
 import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
-import { ModalComponent } from '../../../../shared/components/ui/modal/modal.component';
+import { AuthComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-home-main',
@@ -18,42 +18,9 @@ import { ModalComponent } from '../../../../shared/components/ui/modal/modal.com
     SpecialGiftsComponent,
     ReviewsComponent,
     BestSellerComponent,
-    ModalComponent,
+    AuthComponent,
   ],
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.scss',
 })
-export class HomeMainComponent {
-  isSignIn: boolean = true;
-  forgetPass: boolean = false;
-  verify: boolean = false;
-  setPass: boolean = false;
-
-  forgetPassword() {
-    this.isSignIn = false;
-    this.verify = false;
-    this.setPass = false;
-    this.forgetPass = true;
-  }
-
-  recoverPassword() {
-    this.isSignIn = false;
-    this.verify = true;
-    this.setPass = false;
-    this.forgetPass = false;
-  }
-
-  verifyCode() {
-    this.isSignIn = false;
-    this.verify = false;
-    this.setPass = true;
-    this.forgetPass = false;
-  }
-
-  setPassword() {
-    this.isSignIn = true;
-    this.verify = false;
-    this.setPass = false;
-    this.forgetPass = false;
-  }
-}
+export class HomeMainComponent {}
