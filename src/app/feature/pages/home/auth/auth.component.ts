@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ModalComponent } from '../../../../shared/components/ui/modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { VerifyComponent } from './verify/verify.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { ModalService } from '../../../../shared/services/modal.service';
 
 @Component({
   selector: 'app-auth',
@@ -18,6 +19,8 @@ import { SetPasswordComponent } from './set-password/set-password.component';
   styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
+  private modalService = inject(ModalService);
+
   isSignIn: boolean = true;
   forgetPass: boolean = false;
   verify: boolean = false;
@@ -53,5 +56,19 @@ export class AuthComponent {
       default:
         break;
     }
+  }
+
+  resetState() {
+    this.title = 'Login to your account';
+    this.isSignIn = true;
+    this.forgetPass = false;
+    this.verify = false;
+    this.setPass = false;
+  }
+
+  // Listen for modal close event and reset states
+  onModalClose() {
+    this.modalService.close('login');
+    this.resetState();
   }
 }
