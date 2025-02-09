@@ -16,6 +16,10 @@ export class AllCategoryComponent {
 
   allProducts: Prosucts[] = [];
   subscription: Subscription[] = [];
+  paginatedProducts: Prosucts[] = [];
+  page = 1; // Current page
+  pageSize = 6; // Number of items per page
+  maxVisiblePages = 4; // Max visible pages before ellipsis
 
   ngOnInit(): void {
     this.getCategoryProducts();
