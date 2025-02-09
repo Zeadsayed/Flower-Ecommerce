@@ -19,10 +19,11 @@ import { Subscription } from 'rxjs';
 import { AuthApiService } from 'auth-api';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { ForgetPassword } from '../../../../../core/interfaces/auth/forget-password';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-verify',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './verify.component.html',
   styleUrl: './verify.component.scss',
 })
@@ -39,7 +40,7 @@ export class VerifyComponent implements OnInit, OnDestroy {
   userEmail: string | null = null;
 
   resendDisabled: boolean = false;
-  timeRemaining: number = 60;
+  timeRemaining: number = 30;
   timerInterval: any;
 
   @Output() changeState = new EventEmitter<string>(); // Event emitter to notify parent
@@ -127,7 +128,7 @@ export class VerifyComponent implements OnInit, OnDestroy {
     if (!this.validationChecker()) return;
     this.loading = true;
     let data: Verify = {
-      resetCode: this.verifyControls.resetCode.value!,
+      resetCode: this.verifyControls.resetCode.value!.toString(),
     };
     let sub = this._AuthApiService.verifyCode(data).subscribe({
       next: (res) => {

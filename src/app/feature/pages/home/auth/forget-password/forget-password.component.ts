@@ -20,10 +20,11 @@ import { Subscription } from 'rxjs';
 import { AuthApiService } from 'auth-api';
 import { ModalService } from '../../../../../shared/services/modal.service';
 import { AuthService } from '../../../../services/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss',
 })

@@ -9,6 +9,7 @@ import {
 import {
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -16,10 +17,11 @@ import { AuthApiService } from 'auth-api';
 import { Subscription } from 'rxjs';
 import { Login, LoginForm } from '../../../../../core/interfaces/auth/login';
 import { ModalService } from '../../../../../shared/services/modal.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
