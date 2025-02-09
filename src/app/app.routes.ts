@@ -1,8 +1,10 @@
+import { Category } from './core/interfaces/home-main/category';
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 
 export const routes: Routes = [
     {path:'', component: MainLayoutComponent,
+        
     children:[
         {path:'', pathMatch:'full', canActivate:[],
             loadChildren: ()=>
@@ -13,5 +15,11 @@ export const routes: Routes = [
                 import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)        }
 
         ]
-    }
+    },
+
+    {
+    path: 'category',
+    loadComponent: () =>
+        import('./feature/pages/category/category.component').then((m) => m.CategoryComponent)
+}
 ];
