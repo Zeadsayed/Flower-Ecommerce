@@ -3,7 +3,8 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
 
 export const routes: Routes = [
     {path:'', component: MainLayoutComponent,
-    children:[
+    
+        children:[
         {path:'', pathMatch:'full', canActivate:[],
             loadChildren: ()=>
                 import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)
@@ -13,5 +14,7 @@ export const routes: Routes = [
                 import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)        }
 
         ]
+    },{
+        path:'Auth', loadComponent: () => import('./core/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent)
     }
 ];
