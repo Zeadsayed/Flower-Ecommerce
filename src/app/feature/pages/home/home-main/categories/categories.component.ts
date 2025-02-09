@@ -25,6 +25,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     dots: false,
     nav: false,
     navSpeed: 1200,
+    margin: 5,
     responsive: {
       0: {
         items: 2,
@@ -36,6 +37,9 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         items: 4,
       },
       940: {
+        items: 4,
+      },
+      1200: {
         items: 5,
       },
     },
