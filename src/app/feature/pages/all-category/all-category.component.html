@@ -2,8 +2,7 @@
     <div class="grid">
         <div class="grid lg:grid-cols-4 sm:grid-cols-2">
             @for (product of allProducts; track product) {
-            <popular-card [imgCover]="product.imgCover" [title]="product.title" [title]="product.title"
-                [price]="product.price" (addToCart)="handleAddToCart(product)"></popular-card>
+            <popular-card [cardData]="product" (addToCart)="handleAddToCart(product)"></popular-card>
             }
         </div>
     </div>

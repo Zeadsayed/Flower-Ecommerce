@@ -13,7 +13,7 @@ export const routes: Routes = [
         canActivate: [],
         loadChildren: () =>
           import('./feature/pages/home/home-main/home.route').then(
-            (m) => m.routes
+            (c) => c.routes
           ),
       },
       {
@@ -21,15 +21,15 @@ export const routes: Routes = [
         canActivate: [],
         loadChildren: () =>
           import('./feature/pages/home/home-main/home.route').then(
-            (m) => m.routes
+            (c) => c.routes
           ),
       },
       {
-        path: 'all-category',
+        path: 'all-categories',
         canActivate: [],
         loadChildren: () =>
           import('./feature/pages/all-category/AllCategory.route').then(
-            (m) => m.routes
+            (c) => c.routes
           ),
       },
     ],
