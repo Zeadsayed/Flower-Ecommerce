@@ -26,20 +26,20 @@
 
     .title {
       font-family: var(--font-inter);
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 600;
-      line-height: 21.6px;
-      text-align: left;
+      line-height: 1.35rem;
+      text-align: start;
       text-underline-position: from-font;
       text-decoration-skip-ink: none;
       color: #160e4b;
     }
     .items {
       font-family: var(--font-roboto);
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 400;
-      line-height: 28.8px;
-      text-align: left;
+      line-height: 1.8rem;
+      text-align: start;
       text-underline-position: from-font;
       text-decoration-skip-ink: none;
       color: #757f95;
@@ -61,10 +61,10 @@
 
     .category-description {
       .title {
-        text-align: center;
+        text-align: start;
       }
       .items {
-        text-align: center;
+        text-align: start;
       }
     }
   }

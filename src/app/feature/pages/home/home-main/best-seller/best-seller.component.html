@@ -1,4 +1,4 @@
-<div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 my-24 ">
+<div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 ">
     <div class="best-seller grid lg:grid-cols-4 sm:grid-cols-1">
         <div class="description lg:col-span-1 sm:col-span-1">
             <span class="header text-primary uppercase">Premium Gifts</span>
@@ -28,7 +28,7 @@
                 @for (item of allBestSeller; track $index){
                 <ng-container>
                     <ng-template carouselSlide>
-                        <popular-card [imgCover]="item.imgCover" [price]="item.price"
+                        <popular-card [imgCover]="item.imgCover" [price]="item.price" [badge]="badge"
                             [title]="item.title"></popular-card>
                     </ng-template>
                 </ng-container>
