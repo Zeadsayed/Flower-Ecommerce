@@ -5,6 +5,7 @@ import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
 import { TrustCompaniesComponent } from './trust-companies/trust-companies.component';
 import { BestSellerComponent } from './best-seller/best-seller.component';
 import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
+import { GallaryComponent } from './gallary/gallary.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 
@@ -23,9 +24,10 @@ import { AboutComponent } from './about/about.component';
     ReviewsComponent,
 
     BestSellerComponent,
-    AboutComponent
+    AboutComponent,
+    GallaryComponent
   ],
-  templateUrl: './home-main.component.html',
-  styleUrl: './home-main.component.scss',
+    templateUrl: './home-main.component.html',
+    styleUrl: './home-main.component.scss',
 })
 export class HomeMainComponent {}
