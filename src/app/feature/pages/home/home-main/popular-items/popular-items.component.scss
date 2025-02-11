@@ -39,3 +39,7 @@
   position: absolute;
   background: var(--primary-color);
 }
+
+.active {
+  border-color: var(--primary-color);
+}
