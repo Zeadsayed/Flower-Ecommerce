@@ -7,14 +7,14 @@ export const routes: Routes = [
         children:[
         {path:'', pathMatch:'full', canActivate:[],
             loadChildren: ()=>
-                import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)
+                import('./feature/pages/home/home-main/home.route').then((c)=>c.routes)
         },
         {path:'home', canActivate:[],
             loadChildren: ()=>
-                import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)        }
+                import('./feature/pages/home/home-main/home.route').then((c)=>c.routes)        }
 
         ]
     },{
-        path:'Auth', loadComponent: () => import('./core/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent)
+        path:'auth', loadComponent: () => import('./core/auth-layout/auth-layout.component').then((c) => c.AuthLayoutComponent)
     }
 ];
