@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
+import { RegisterComponent } from './feature/pages/register/register.component';
 
 export const routes: Routes = [
     {path:'', component: MainLayoutComponent,
@@ -13,5 +14,6 @@ export const routes: Routes = [
                 import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)        }
 
         ]
-    }
+    },
+    {path:'register' , component: RegisterComponent},
 ];
