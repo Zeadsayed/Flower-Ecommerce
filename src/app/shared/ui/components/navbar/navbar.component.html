@@ -26,7 +26,13 @@
       </div>
       @if(!isLogin){
       <div>
-        <button type="button" class="login" (click)="openLoginModal()">Login</button>
+        <button type="button" class="login w-20 h-11 m-2.5 rounded-3xl text-base font-medium leading-7 text-center"
+          (click)="openLoginModal()">Login</button>
+      </div>
+      } @else {
+      <div>
+        <button type="button" class="login w-20 h-11 m-2.5 rounded-3xl text-base font-medium leading-7 text-center"
+          (click)="logout()">Logout</button>
       </div>
       }
 

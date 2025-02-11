@@ -50,6 +50,6 @@
         </button>
     </div>
     <div class="flex justify-center">
-        <app-auth-button [label]="'Login'" (clicked)="signin()"></app-auth-button>
+        <app-auth-button [label]="'Login'" [loading]="loading" (clicked)="signin()"></app-auth-button>
     </div>
 </form>

@@ -19,6 +19,7 @@ import { Login, LoginForm } from '../../../../../core/interfaces/auth/login';
 import { ModalService } from '../../../../../shared/services/modal.service';
 import { CommonModule } from '@angular/common';
 import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
+import { localStorageKeys } from '../../../../../core/interfaces/localStorageKeys';
 
 @Component({
   selector: 'app-login',
@@ -93,10 +94,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     let sub = this._AuthApiService.login(data).subscribe({
       next: (res) => {
         if (res.message === 'success') {
-          localStorage.setItem('token', res.token);
+          localStorage.setItem(localStorageKeys.JWT, res.token);
           this.submitted = false;
           this.loading = false;
           this.onModalClose();
+          window.location.reload();
         }
       },
       error: (err) => {

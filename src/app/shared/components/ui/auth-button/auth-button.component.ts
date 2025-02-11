@@ -8,9 +8,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class AuthButtonComponent {
   @Input() label: string = 'Login'; // Default button text
+  @Input() disabled: boolean = false; // Disable button
+  @Input() loading: boolean = false; // Track loading state
+
   @Output() clicked = new EventEmitter<void>(); // Event to emit click action
 
   onClick(): void {
-    this.clicked.emit(); // Emit event when button is clicked
+    if (!this.loading && !this.disabled) {
+      this.clicked.emit(); // Emit event when button is clicked
+    }
   }
 }
