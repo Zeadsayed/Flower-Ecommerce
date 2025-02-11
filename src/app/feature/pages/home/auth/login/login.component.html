@@ -4,7 +4,7 @@
             'border-red-500 dark:border-red-600':  (loginControls.email.touched || submitted) && (loginControls.email.hasError('pattern') ||
             loginControls.email.hasError('required'))
           }"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             placeholder="Email" />
         @if((loginControls.email.touched || submitted) && loginControls.email.hasError('required')){
         <p class="text-red-500 text-sm mt-1">
@@ -19,7 +19,7 @@
             'border-red-500 dark:border-red-600':  (loginControls.password.touched || submitted) && (loginControls.password.hasError('pattern') ||
             loginControls.password.hasError('required') || loginControls.password.hasError('minlength'))
           }"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+            class="auth-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
         @if((loginControls.password.touched || submitted) && loginControls.password.hasError('required')){
         <p class="text-red-500 text-sm mt-1">Password is Required</p>
         } @else if (loginControls.password.hasError('minlength')) {
@@ -50,7 +50,6 @@
         </button>
     </div>
     <div class="flex justify-center">
-        <button type="button" class="auth-button w-96" (click)="signin()">Login
-        </button>
+        <app-auth-button [label]="'Login'" (clicked)="signin()"></app-auth-button>
     </div>
 </form>

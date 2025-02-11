@@ -21,10 +21,11 @@ import { AuthApiService } from 'auth-api';
 import { ModalService } from '../../../../../shared/services/modal.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
 
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, AuthButtonComponent],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss',
 })

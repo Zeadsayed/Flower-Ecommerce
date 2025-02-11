@@ -47,3 +47,13 @@
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
+
+.auth-input {
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0px 1px 10px 0px #0000001a;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}

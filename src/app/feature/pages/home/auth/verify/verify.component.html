@@ -1,7 +1,7 @@
 <form class="space-y-4" [formGroup]="verifyForm">
     <div>
         <input type="number" name="number" id="number" formControlName="resetCode" [ngClass]="{
-            'border-red-500 dark:border-red-600':  (verifyControls.resetCode.touched || submitted) && (verifyControls.resetCode.hasError('pattern') ||
+            'auth-input border-red-500 dark:border-red-600':  (verifyControls.resetCode.touched || submitted) && (verifyControls.resetCode.hasError('pattern') ||
             verifyControls.resetCode.hasError('required') || verifyControls.resetCode.hasError('minlength'))
           }"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -31,7 +31,6 @@
         </div>
     </div>
     <div class="flex justify-center">
-        <button class="auth-button w-96" type="button" (click)="verifyOtp()">Verify
-        </button>
+        <app-auth-button [label]="'Verify'" (clicked)="verifyOtp()"></app-auth-button>
     </div>
 </form>

@@ -18,10 +18,11 @@ import { Subscription } from 'rxjs';
 import { Login, LoginForm } from '../../../../../core/interfaces/auth/login';
 import { ModalService } from '../../../../../shared/services/modal.service';
 import { CommonModule } from '@angular/common';
+import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, AuthButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

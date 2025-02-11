@@ -20,10 +20,11 @@ import { AuthApiService } from 'auth-api';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { ForgetPassword } from '../../../../../core/interfaces/auth/forget-password';
 import { CommonModule } from '@angular/common';
+import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
 
 @Component({
   selector: 'app-verify',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, AuthButtonComponent],
   templateUrl: './verify.component.html',
   styleUrl: './verify.component.scss',
 })

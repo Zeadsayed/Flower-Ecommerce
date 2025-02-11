@@ -19,10 +19,11 @@ import {
 import { Subscription } from 'rxjs';
 import { AuthApiService } from 'auth-api';
 import { CommonModule } from '@angular/common';
+import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
 
 @Component({
   selector: 'app-set-password',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, AuthButtonComponent],
   templateUrl: './set-password.component.html',
   styleUrl: './set-password.component.scss',
 })

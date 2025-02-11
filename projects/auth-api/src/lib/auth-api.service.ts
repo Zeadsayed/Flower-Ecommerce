@@ -4,6 +4,11 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthEndpoints } from './enums/auth-api-endpoints';
 import { AuthApiAdapter } from './adapter/auth-api.adapter';
+import { Login } from './interfaces/login';
+import { Register } from './interfaces/register';
+import { ForgetPassword } from './interfaces/forget_password';
+import { Verify } from './interfaces/verify';
+import { SetPassword } from './interfaces/set_password';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +17,13 @@ export class AuthApiService implements AuthApi {
   private _authApiAdapter = inject(AuthApiAdapter);
   private _httpClient = inject(HttpClient);
 
-  login(data: any): Observable<any> {
+  login(data: Login): Observable<any> {
     return this._httpClient
       .post(AuthEndpoints.LOGIN, data)
       .pipe(map((res) => this._authApiAdapter.loginAdapt(res)));
   }
 
-  register(data: any): Observable<any> {
+  register(data: Register): Observable<any> {
     return this._httpClient
       .post(AuthEndpoints.REGISTER, data)
       .pipe(map((res) => this._authApiAdapter.registerAdapt(res)));
@@ -32,19 +37,19 @@ export class AuthApiService implements AuthApi {
     return this._httpClient.post(AuthEndpoints.CHANGE_PASSWORD, data);
   }
 
-  resetPassword(data: any): Observable<any> {
+  resetPassword(data: SetPassword): Observable<any> {
     return this._httpClient
       .put(AuthEndpoints.RESET_PASSWORD, data)
       .pipe(map((res) => this._authApiAdapter.resetPassAdapt(res)));
   }
 
-  forgetPassword(data: any): Observable<any> {
+  forgetPassword(data: ForgetPassword): Observable<any> {
     return this._httpClient
       .post(AuthEndpoints.FORGET_PASSWORD, data)
       .pipe(map((res) => this._authApiAdapter.forgetPassAdapt(res)));
   }
 
-  verifyCode(data: any): Observable<any> {
+  verifyCode(data: Verify): Observable<any> {
     return this._httpClient
       .post(AuthEndpoints.VERIFY_CODE, data)
       .pipe(map((res) => this._authApiAdapter.verifyCodeAdapt(res)));
