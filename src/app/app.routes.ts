@@ -32,6 +32,12 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
+      {
+        path: 'about',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/about/About.route').then((c) => c.routes),
+      },
     ],
   },
 ];
