@@ -5,10 +5,11 @@ import { CategoriesService } from '../../../../services/home-main/categories.ser
 import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSeller';
 import { Prosucts } from '../../../../../core/interfaces/home-main/Products';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-popular-items',
-  imports: [PopularCardComponent, CommonModule],
+  imports: [PopularCardComponent, CommonModule,RouterLink],
   templateUrl: './popular-items.component.html',
   styleUrl: './popular-items.component.scss',
 })

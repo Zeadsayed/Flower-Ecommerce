@@ -6,12 +6,15 @@ export const routes: Routes = [
     children:[
         {path:'', pathMatch:'full', canActivate:[],
             loadChildren: ()=>
-                import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)
+                import('./feature/pages/home/home-main/home.route').then((c)=>c.routes)
         },
         {path:'home', canActivate:[],
             loadChildren: ()=>
-                import('./feature/pages/home/home-main/home.route').then((m)=>m.routes)        }
+                import('./feature/pages/home/home-main/home.route').then((c)=>c.routes)  }
 
         ]
+    },
+    {
+        path:'product-detials/:id',loadComponent:()=>import('./feature/pages/product-details/product-details.component').then((c)=>c.ProductDetailsComponent)
     }
 ];

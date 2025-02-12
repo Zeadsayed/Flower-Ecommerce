@@ -4,4 +4,9 @@ export const ApiRoutes = {
     bestSeller: 'best-seller',
     products: 'products',
   },
+  product:{
+    products:'products',
+    singleProduct: (id: string) => `/products/${id}`,
+
+  }
 };
