@@ -12,9 +12,10 @@ export const routes: Routes = [
             loadChildren: ()=>
                 import('./feature/pages/home/home-main/home.route').then((c)=>c.routes)  }
 
-        ]
-    },
-    {
+        ,  {
         path:'product-detials/:id',loadComponent:()=>import('./feature/pages/product-details/product-details.component').then((c)=>c.ProductDetailsComponent)
     }
+        ]
+    },
+  
 ];
