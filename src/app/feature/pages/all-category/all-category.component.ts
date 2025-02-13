@@ -4,10 +4,11 @@ import { CategoriesService } from '../../services/home-main/categories.service';
 import { Prosucts } from '../../../core/interfaces/home-main/Products';
 import { CategoryCardComponent } from '../../../shared/components/ui/category-card/category-card.component';
 import { PopularCardComponent } from '../../../shared/components/ui/popular-card/popular-card.component';
+import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.component';
 
 @Component({
   selector: 'app-all-category',
-  imports: [PopularCardComponent],
+  imports: [PopularCardComponent, SidebarCategoryComponent],
   templateUrl: './all-category.component.html',
   styleUrl: './all-category.component.scss',
 })
