@@ -1,16 +1,19 @@
-@import url('../../../../../../styles.scss');
-.header-container {
-    position: relative;
-    text-align: center;
-  }
+@import url('../../../../../../../public/scss/base/_variables.scss');
 
-  .header-container::after {
-    content: '';
-    position: absolute;
-    left: 50%; /* Start from the middle */
-    transform: translateX(-155%); /* Move back by 50% of its own width to center */
-    width: 155px; /* Adjust the width of the line */
-    height: 2px; /* Adjust the thickness of the line */
-    background-color: var(--primary-color); /* Use your primary color variable */
-    margin-top: 8px; /* Adjust the spacing between text and line */
-  }
+
+.header-container {
+  position: relative; /* Needed for absolute positioning of ::after */
+  display: inline-block; /* Ensures the line adjusts to text width */
+  padding-bottom: 12px; /* Space between text and line */
+}
+
+.header-container::after {
+  content: '';
+  position: absolute;
+  left: 50%; /* Center the line */
+  transform: translateX(-50%); /* Adjust centering */
+  bottom: 0; /* Position it just below the text */
+  width:100%; /* Adjust line width */
+  height: 2px; /* Line thickness */
+  background-color: var(--primary-color); /* Use your primary color */
+}
