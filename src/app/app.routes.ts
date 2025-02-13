@@ -25,13 +25,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'category',
-        loadComponent: () =>
-          import('./feature/pages/category/category.component').then(
-            (c) => c.CategoryComponent
-          ),
-      },
-      {
         path: 'all-categories',
         canActivate: [],
         loadChildren: () =>
