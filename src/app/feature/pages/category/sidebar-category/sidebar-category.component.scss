@@ -1,0 +1,54 @@
+.line {
+    left: 50px;
+    z-index: 111;
+    width: 228px;
+    height: 2px;
+    position: absolute;
+    background: rgba(117, 127, 149, 1) ;
+  }
+  
+/* Container for the range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 8px;
+  background: rgba(248, 43, 169, 1);
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Style the slider thumb for Webkit browsers (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 2px solid rgba(248, 43, 169, 1);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+/* Style the slider thumb for Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 2px solid rgba(248, 43, 169, 1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Style the track for Firefox */
+input[type="range"]::-moz-range-track {
+  background: rgba(248, 43, 169, 1);
+  height: 8px;
+  border-radius: 4px;
+}
+
+
+
+
+/* Thumb hover effect */
+
+/* Value Display */
