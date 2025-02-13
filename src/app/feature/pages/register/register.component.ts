@@ -2,10 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormInputComponent } from "../../../shared/components/ui/form-input/form-input.component";
 import { ReactiveFormsModule, FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RegisterService } from './../../services/home-main/register.service';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-register',
-  imports: [FormInputComponent,CommonModule, ReactiveFormsModule, NgIf],
+  imports: [FormInputComponent,CommonModule, ReactiveFormsModule],
 templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

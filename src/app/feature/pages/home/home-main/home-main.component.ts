@@ -7,24 +7,21 @@ import { BestSellerComponent } from './best-seller/best-seller.component';
 import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
+import { AboutInstgramComponent } from "./about-instgram/about-instgram.component";
 
 @Component({
   selector: 'app-home-main',
   imports: [
     CategoriesComponent,
-
     PopularItemsComponent,
-
     DeliveryInfoComponent,
-
     TrustCompaniesComponent,
-
     SpecialGiftsComponent,
     ReviewsComponent,
-
     BestSellerComponent,
-    AboutComponent
-  ],
+    AboutComponent,
+    AboutInstgramComponent
+],
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.scss',
 })
