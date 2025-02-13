@@ -6,6 +6,7 @@
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <div class="flex gap-4">
         <img src="icons/search.svg" alt="Search Icon" class="h-6 w-6" />
+        @if (isLogin) {
         <div class="relative">
           <img src="icons/fav.svg" alt="Favorites Icon" class="h-6 w-6" />
           <span
@@ -20,7 +21,20 @@
             5
           </span>
         </div>
+        }
+
       </div>
+      @if(!isLogin){
+      <div>
+        <button type="button" class="login w-20 h-11 m-2.5 rounded-3xl text-base font-medium leading-7 text-center"
+          (click)="openLoginModal()">Login</button>
+      </div>
+      } @else {
+      <div>
+        <button type="button" class="login w-20 h-11 m-2.5 rounded-3xl text-base font-medium leading-7 text-center"
+          (click)="logout()">Logout</button>
+      </div>
+      }
 
       <button data-collapse-toggle="navbar-sticky" type="button"
         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
