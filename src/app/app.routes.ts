@@ -24,7 +24,9 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
-      
+      {
+        path: 'product-detials/:id', loadComponent: () => import('./feature/pages/product-details/product-details.component').then((c) => c.ProductDetailsComponent)
+      },
       {
         path: 'all-categories',
         canActivate: [],
