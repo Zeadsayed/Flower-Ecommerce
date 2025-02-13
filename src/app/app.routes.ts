@@ -1,7 +1,6 @@
-import { AllCategoryComponent } from './feature/pages/all-category/all-category.component';
-import { Category } from './core/interfaces/home-main/category';
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
+import { AuthLayoutComponent } from './core/pages/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
   {
@@ -42,4 +41,11 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'auth',
+    loadComponent: () =>
+      import('./core/pages/auth-layout/auth-layout.component').then(
+        (c) => c.AuthLayoutComponent
+      ),
+  }
 ];
