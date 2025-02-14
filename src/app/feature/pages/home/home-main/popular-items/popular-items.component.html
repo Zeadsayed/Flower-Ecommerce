@@ -21,7 +21,8 @@
 
   <div class="grid lg:grid-cols-4 sm:grid-cols-2">
     @for (item of allProducts; track item) {
-      <a [routerLink]="'/product-detials/'+ item._id">
+      <a [routerLink]="'/product-details/' + item._id">
+
       <popular-card class="flex justify-center" [cardData]="item" (addToCart)="handleAddToCart(item)"></popular-card>
       </a>
     }

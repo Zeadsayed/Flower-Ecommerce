@@ -17,7 +17,8 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
-      
+      { path: 'product-details/:id', component: ProductDetailsComponent },
+
       {
         path: 'home',
         canActivate: [],
@@ -45,6 +46,5 @@ export const routes: Routes = [
         (c) => c.AuthLayoutComponent
       ),
   },
-  { path: 'product-details/:id', component: ProductDetailsComponent },
 
 ];

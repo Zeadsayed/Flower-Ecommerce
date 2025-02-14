@@ -4,16 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Product, ProductRes } from '../../../core/interfaces/product-res';
 import { ProductService } from '../../../core/services/product-service/product.service';
+import { RelatedProductsComponent } from './related-products/related-products.component';
+import { Prosucts } from '../../../core/interfaces/home-main/Products';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RelatedProductsComponent],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
   product!: Product
+  relatedProducts: Prosucts[] = []; // Change from single product to array
+
   mainImage: string = '';
   quantity: number = 1;
   private destroy$ = new Subject<void>();
@@ -41,6 +45,26 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         if (response && response.product) {
           this.product = response.product;
           this.mainImage = response.product.imgCover;
+          
+          // Load related products after setting the product
+          if (this.product.category) {
+            this.loadRelatedProducts(this.product.category);
+          }
+        }
+      });
+  }
+
+  loadRelatedProducts(categoryId: string): void {
+    this.productService.getRelatedProducts(categoryId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: any) => {
+        console.log('API Response for Related Products:', response);
+  
+        if (response && Array.isArray(response.products)) { // Ensure it's an array
+          this.relatedProducts = response.products;
+          console.log('Processed Related Products:', this.relatedProducts);
+        } else {
+          console.log('No related products found.');
         }
       });
   }
@@ -65,6 +89,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         product: this.product,
         quantity: this.quantity
       };
+      // You probably need to add this to a cart service
+      console.log('Added to Cart:', cartItem);
     }
   }
 

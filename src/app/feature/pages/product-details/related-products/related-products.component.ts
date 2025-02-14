@@ -16,30 +16,28 @@ export class RelatedProductsComponent {
   @Input() relatedProducts: Prosucts[] = []; //  //  Ensure it's an array of `Products`
   modal: Modal | null = null;
 
-  constructor(){}
-
-
+  constructor() {}
 
   ngOnInit(): void {
-    console.log('Related Products Component Initialized', this.relatedProducts);
+    console.log('Related Products:', this.relatedProducts);
   }
-
 
   handleAddToCart(product: Prosucts) {
     console.log('Adding to cart:', product);
   }
-  
 
-  
   ngAfterViewInit() {
-    // Initialize the modal
     const modalElement = document.getElementById('relatedProductsModal');
     if (modalElement) {
+      console.log('Modal Element Found:', modalElement);
       this.modal = new Modal(modalElement);
+    } else {
+      console.error('Modal Element Not Found');
     }
   }
 
   openPopup() {
+    console.log('Opening Popup');
     if (this.modal) {
       this.modal.show();
     }
@@ -50,10 +48,7 @@ export class RelatedProductsComponent {
       this.modal.hide();
     }
   }
-
 }
-
-  
 
   
 
