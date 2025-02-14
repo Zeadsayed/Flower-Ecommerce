@@ -5,10 +5,11 @@ import { Prosucts } from '../../../core/interfaces/home-main/Products';
 import { CategoryCardComponent } from '../../../shared/components/ui/category-card/category-card.component';
 import { PopularCardComponent } from '../../../shared/components/ui/popular-card/popular-card.component';
 import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-category',
-  imports: [PopularCardComponent, SidebarCategoryComponent],
+  imports: [PopularCardComponent, SidebarCategoryComponent,RouterLink],
   templateUrl: './all-category.component.html',
   styleUrl: './all-category.component.scss',
 })
