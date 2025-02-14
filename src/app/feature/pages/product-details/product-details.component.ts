@@ -1,9 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductRes, Product } from '../../../core/interfaces/product-res';
-import { ProductService } from '../../../core/services/product-service/product.service';
-import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
+import { Product, ProductRes } from '../../../core/interfaces/product-res';
+import { ProductService } from '../../../core/services/product-service/product.service';
 
 @Component({
   selector: 'app-product-details',

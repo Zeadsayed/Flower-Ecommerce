@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BestSellerItem } from '../../../../core/interfaces/home-main/BestSeller';
 import { CurrencyPipe } from '@angular/common';
 import { Prosucts } from '../../../../core/interfaces/home-main/Products';
+import { Product } from '../../../../core/interfaces/product-res';
 @Component({
   selector: 'popular-card',
   imports: [CurrencyPipe],
@@ -10,6 +11,8 @@ import { Prosucts } from '../../../../core/interfaces/home-main/Products';
 })
 export class PopularCardComponent {
   @Input() cardData!: Prosucts;
+  
+
   @Input() badge: string = '';
   @Input() imgCover: string = '';
   @Input() title: string = '';
