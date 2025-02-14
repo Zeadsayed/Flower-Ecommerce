@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductRes, Product } from '../../../core/interfaces/product-res'; // Import interfaces
+import { ProductRes, Product } from '../../../core/interfaces/product-res';
 import { ProductService } from '../../../core/services/product-service/product.service';
 import { CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule], // Import CommonModule for Angular directives
+  imports: [CommonModule],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
-  product: Product | null = null; // Holds the product details
-  mainImage: string = ''; // Holds the currently selected image
-  quantity: number = 1; // Default quantity
+export class ProductDetailsComponent implements OnInit, OnDestroy {
+  product!: Product
+  mainImage: string = '';
+  quantity: number = 1;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -22,21 +24,25 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const productId = params.get('id');
-      if (productId) {
-        this.productDetails(productId); // Fetch product details
-      }
-    });
+    this.route.paramMap
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(params => {
+        const productId = params.get('id');
+        if (productId) {
+          this.productDetails(productId);
+        }
+      });
   }
 
   productDetails(id: string): void {
-    this.productService.getProductDetials(id).subscribe((response: ProductRes) => {
-      if (response && response.product) {
-        this.product = response.product; // Assign the product data
-        this.mainImage = response.product.imgCover; // Set default main image
-      }
-    });
+    this.productService.getProductDetials(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: ProductRes) => {
+        if (response && response.product) {
+          this.product = response.product;
+          this.mainImage = response.product.imgCover;
+        }
+      });
   }
 
   changeImage(selectedImage: string): void {
@@ -59,7 +65,11 @@ export class ProductDetailsComponent implements OnInit {
         product: this.product,
         quantity: this.quantity
       };
-      console.log('Added to cart:', cartItem); // Replace with actual cart logic
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

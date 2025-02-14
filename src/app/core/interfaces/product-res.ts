@@ -12,11 +12,6 @@ export interface ProductRes {
     images: string[]
     price: number
     priceAfterDiscount: number
-    quantity: number
-    category: string
-    occasion: string
-    createdAt: string
-    updatedAt: string
     __v: number
     discount: number
     sold: number
