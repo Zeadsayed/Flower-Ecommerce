@@ -1,153 +1,139 @@
-   <!-- Mobile Filter Button -->
-   <button 
-   (click)="toggleSidebar()"
-   class="md:hidden fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-full shadow-lg z-50">
-   <i [class]="isOpen ? 'fas fa-times' : 'fas fa-filter'"></i>
-   Filters
- </button>
+<!-- Mobile Filter Button -->
+<button (click)="toggleSidebar()"
+  class="md:hidden fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-full shadow-lg z-50">
+  <i [class]="isOpen ? 'fas fa-times' : 'fas fa-filter'"></i>
+  Filters
+</button>
 
- <!-- Overlay for mobile -->
- <div 
-   *ngIf="isOpen"
-   (click)="toggleSidebar()"
-   class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
- </div>
+<!-- Overlay for mobile -->
+<div *ngIf="isOpen" (click)="toggleSidebar()" class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40">
+</div>
 
- <!-- Sidebar -->
- <div 
-   [class]="'transform transition-transform duration-300 ease-in-out ' + 
+<!-- Sidebar -->
+<div [class]="'transform transition-transform duration-300 ease-in-out ' + 
             (isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0') + 
-            ' fixed md:relative left-0 top-0 h-full md:h-auto z-50 bg-white overflow-y-auto'"
-   class="w-[302px]">
-   
-   <!-- Category Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Category</h2>
-     <div class="line"></div>
-     <div class="space-y-2 mt-11">
-       @for (category of categories; track category.id) {
-         <div class="flex items-center justify-between">
-           <div class="flex items-center">
-             <input 
-               type="checkbox" 
-               [id]="category.id" 
-               class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" 
-             />
-             <label [for]="category.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
-               {{ category.name }}
-             </label>
-           </div>
-           <span class="text-gray-600">({{ category.count }})</span>
-         </div>
-       }
-     </div>
-   </div>
+            ' fixed md:relative left-0 top-0 h-full md:h-auto z-50 bg-white overflow-y-auto'" class="w-[302px]">
 
-   <!-- Brands Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Brands</h2>
-     <div class="line"></div>
-     <div class="space-y-2 mt-11">
-       @for (brand of brands; track brand.id) {
-         <div class="flex items-center justify-between">
-           <div class="flex items-center">
-             <input 
-               type="checkbox" 
-               [id]="brand.id" 
-               class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" 
-             />
-             <label [for]="brand.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
-               {{ brand.name }}
-             </label>
-           </div>
-           <span class="text-gray-600">({{ brand.count }})</span>
-         </div>
-       }
-     </div>
-   </div>
+  <!-- Category Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Category</h2>
+    <div class="line"></div>
+    <div class="space-y-2 mt-11">
+      @for (category of categories; track category._id) {
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input type="checkbox" (change)="getIdCategory($event,category._id)" [id]="category._id"
+            class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" />
+          <label [for]="category._id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
+            {{ category.name }}
+          </label>
+        </div>
+        <span class="text-gray-600">({{ category.productsCount }})</span>
+      </div>
+      }
+    </div>
+  </div>
 
-   <!-- Price Range Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Price Rating</h2>
-     <div class="line"></div>
-     <div class="flex flex-col text-center space-x-2 mt-11">
-       <span class="text-primary text-left font-bold mb-1">$0 - $36.00</span>
-       <input type="range" min="0" max="100" value="25" class="w-full" />
-     </div>
-   </div>
+  <!-- Brands Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Brands</h2>
+    <div class="line"></div>
+    <div class="space-y-2 mt-11">
+      @for (brand of brands; track brand.id) {
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input type="checkbox" [id]="brand.id" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" />
+          <label [for]="brand.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
+            {{ brand.name }}
+          </label>
+        </div>
+        <span class="text-gray-600">({{ brand.count }})</span>
+      </div>
+      }
+    </div>
+  </div>
 
-   <!-- Sales Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Sales</h2>
-     <div class="line"></div>
-     <div class="space-y-2 mt-11">
-       @for (sale of sales; track sale.id) {
-         <div class="flex items-center justify-between">
-           <div class="flex items-center">
-             <input 
-               type="checkbox" 
-               [id]="sale.id" 
-               class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" 
-             />
-             <label [for]="sale.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
-               {{ sale.name }}
-             </label>
-           </div>
-           <span class="text-gray-600">({{ sale.count }})</span>
-         </div>
-       }
-     </div>
-   </div>
+  <!-- Price Range Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Price Rating</h2>
+    <div class="line"></div>
+    <div class="flex flex-col text-center space-x-2 mt-11">
+      <span class="text-primary text-left font-bold mb-1">$0 - $36.00</span>
+      <input type="range" min="0" max="100" value="25" class="w-full" />
+    </div>
+  </div>
 
-   <!-- Ratings Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Ratings</h2>
-     <div class="line"></div>
-     <div class="space-y-2 mt-11">
-       @for (rating of ratings; track rating.stars) {
-         <div class="flex items-center space-x-3 mb-3">
-           <input type="checkbox" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" />
-           <div class="flex space-x-1">
-             @for (star of [1,2,3,4,5]; track star) {
-               <i class="text-xl" [class]="star <= rating.stars ? 'fas fa-star text-primary' : 'far fa-star text-gray-300'"></i>
-             }
-           </div>
-         </div>
-       }
-     </div>
-   </div>
+  <!-- Sales Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Sales</h2>
+    <div class="line"></div>
+    <div class="space-y-2 mt-11">
+      @for (sale of sales; track sale.id) {
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input type="checkbox" [id]="sale.id" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" />
+          <label [for]="sale.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
+            {{ sale.name }}
+          </label>
+        </div>
+        <span class="text-gray-600">({{ sale.count }})</span>
+      </div>
+      }
+    </div>
+  </div>
 
-   <!-- Colors Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Colors</h2>
-     <div class="line"></div>
-     <div class="flex justify-between space-x-2 mt-11">
-       @for (color of colors; track color) {
-         <div 
-           class="w-6 h-6 rounded-full cursor-pointer hover:ring-2 ring-offset-2 ring-gray-300"
-           [style.background-color]="color">
-         </div>
-       }
-     </div>
-   </div>
+  <!-- Ratings Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Ratings</h2>
+    <div class="line"></div>
+    <div class="space-y-2 mt-11">
+      @for (rating of ratings; track rating.stars) {
+      <div class="flex items-center space-x-3 mb-3">
+        <input type="checkbox" (change)="getIdRates($event,rating.stars)"
+          class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" />
+        <div class="flex space-x-1">
+          @for (star of [1,2,3,4,5]; track star) {
+          <i class="text-xl"
+            [class]="star <= rating.stars ? 'fas fa-star text-primary' : 'far fa-star text-gray-300'"></i>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
 
-   <!-- Sizes Section -->
-   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Sizes</h2>
-     <div class="line"></div>
-     <div class="space-y-2 mt-11">
-       @for (size of sizes; track size.id) {
-         <div class="flex items-center">
-           <input 
-             type="checkbox" 
-             [id]="size.id" 
-             class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" 
-           />
-           <label [for]="size.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
-             {{ size.name }}
-           </label>
-         </div>
-       }
-     </div>
-   </div>
- </div>
+  <!-- Colors Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Colors</h2>
+    <div class="line"></div>
+    <div class="flex justify-between space-x-2 mt-11">
+      @for (color of colors; track color) {
+      <div class="w-6 h-6 rounded-full cursor-pointer hover:ring-2 ring-offset-2 ring-gray-300"
+        [style.background-color]="color">
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Sizes Section -->
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Sizes</h2>
+    <div class="line"></div>
+    <div class="space-y-2 mt-11">
+      @for (size of sizes; track size.id) {
+      <div class="flex items-center">
+        <input type="checkbox" [id]="size.id" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded" />
+        <label [for]="size.id" class="ml-2 text-gray-700 hover:text-gray-600 cursor-pointer">
+          {{ size.name }}
+        </label>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg ">
+    <!-- Clear Filters Button -->
+    <button (click)="applyFilters()" class="w-full bg-primary text-white py-3 rounded-[20px]">Apply Filters</button>
+    <!-- Apply Filters Buuton -->
+  </div>
+</div>

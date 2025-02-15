@@ -1,5 +1,8 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Category } from '../../../../core/interfaces/home-main/category';
+import { Subscription } from 'rxjs';
+import { CategoriesService } from '../../../services/home-main/categories.service';
 
 interface Rating {
   stars: number;
@@ -10,27 +13,37 @@ interface Rating {
   selector: 'app-sidebar-category',
   imports: [NgIf],
   templateUrl: './sidebar-category.component.html',
-  styleUrl: './sidebar-category.component.scss'
+  styleUrl: './sidebar-category.component.scss',
 })
-export class SidebarCategoryComponent {
+export class SidebarCategoryComponent implements OnInit {
+  categories: Category[] = [];
 
+  selectedCategories: { category: string[] } = { category: [] };
+  selectedRates: { rateAvg: number[] } = { rateAvg: [] };
 
+  subscription: Subscription[] = [];
   isOpen = false;
 
-  categories = [
-    { id: 'cat1', name: 'Home & Living', count: 8 },
-    { id: 'cat2', name: 'Garment Care', count: 8 },
-    { id: 'cat3', name: 'Jewelry & Accessories', count: 8 },
-    { id: 'cat4', name: 'Occasion Gifts', count: 8 },
+  @Output() selectedCategoriesChange = new EventEmitter<{
+    [key: string]: string;
+  }>(); // Emit object
+  @Output() selectedFilter = new EventEmitter<
+    [{ category: string[] }, { rateAvg: number[] }]
+  >();
 
-    { id: 'cat5', name: 'Office & Stationery', count: 8 },
-    { id: 'cat6', name: 'Personalised Gifts', count: 8 },
+  private _categoriesService = inject(CategoriesService);
 
-    { id: 'cat7', name: 'Gifts Box', count: 8 },
+  // categories = [
+  //   { id: 'cat1', name: 'Home & Living', count: 8 },
+  //   { id: 'cat2', name: 'Garment Care', count: 8 },
+  //   { id: 'cat3', name: 'Jewelry & Accessories', count: 8 },
+  //   { id: 'cat4', name: 'Occasion Gifts', count: 8 },
 
+  //   { id: 'cat5', name: 'Office & Stationery', count: 8 },
+  //   { id: 'cat6', name: 'Personalised Gifts', count: 8 },
 
-    // ... add other categories
-  ];
+  //   { id: 'cat7', name: 'Gifts Box', count: 8 },
+  // ];
 
   brands = [
     { id: 'brand1', name: 'Trooba', count: 8 },
@@ -59,7 +72,7 @@ export class SidebarCategoryComponent {
     { stars: 4 },
     { stars: 3 },
     { stars: 2 },
-    { stars: 1 }
+    { stars: 1 },
   ];
 
   colors = [
@@ -67,7 +80,7 @@ export class SidebarCategoryComponent {
     'rgba(76,175,80,1)',
     'rgba(23,162,184,1)',
     '#FCD34D',
-    'rgba(244,67,54,1)'
+    'rgba(244,67,54,1)',
   ];
 
   sizes = [
@@ -75,10 +88,63 @@ export class SidebarCategoryComponent {
     { id: 'size2', name: 'Small' },
     { id: 'size3', name: 'Medium' },
     { id: 'size4', name: 'Large' },
-    { id: 'size5', name: 'Extra Large' }
+    { id: 'size5', name: 'Extra Large' },
   ];
+
+  ngOnInit(): void {
+    this.getAllCategories();
+  }
 
   toggleSidebar() {
     this.isOpen = !this.isOpen;
     // Toggle body class to prevent scrolling when sidebar is open
-  }  }
+  }
+
+  getIdCategory(event: any, categoryId: string) {
+    if (event.target.checked) {
+      if (!this.selectedCategories.category.includes(categoryId)) {
+        this.selectedCategories.category.push(categoryId);
+      }
+    } else {
+      this.selectedCategories.category =
+        this.selectedCategories.category.filter((id) => id !== categoryId);
+    }
+  }
+
+  getIdRates(event: any, rate: number) {
+    if (event.target.checked) {
+      if (!this.selectedRates.rateAvg.includes(rate)) {
+        this.selectedRates.rateAvg.push(rate);
+      }
+    } else {
+      this.selectedRates.rateAvg = this.selectedRates.rateAvg.filter(
+        (r) => r !== rate
+      );
+    }
+  }
+
+  applyFilters() {
+    // Emit selected filters to the parent
+    this.selectedFilter.emit([this.selectedCategories, this.selectedRates]);
+    console.log('Filters Applied:', [
+      this.selectedCategories,
+      this.selectedRates,
+    ]);
+  }
+
+  getAllCategories() {
+    let sub = this._categoriesService.getAllCategories().subscribe({
+      next: (data) => {
+        this.categories = data.categories;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+    this.subscription.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription && this.subscription.forEach((s) => s.unsubscribe());
+  }
+}

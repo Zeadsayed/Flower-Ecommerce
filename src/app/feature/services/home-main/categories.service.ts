@@ -35,4 +35,30 @@ export class CategoriesService {
       params: httpParams ? httpParams : undefined,
     });
   }
+
+  filterProducts(params?: {
+    [key: string]: string | number | boolean | string[] | number[];
+  }): Observable<ProsuctsResponse> {
+    let httpParams = new HttpParams();
+
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        const value = params[key];
+
+        if (Array.isArray(value)) {
+          // Append each array item separately
+          value.forEach((item) => {
+            httpParams = httpParams.append(key, item.toString());
+          });
+        } else {
+          // Append single values normally
+          httpParams = httpParams.set(key, value.toString());
+        }
+      });
+    }
+
+    return this.http.get<ProsuctsResponse>(this.env + ApiRoutes.home.products, {
+      params: httpParams,
+    });
+  }
 }

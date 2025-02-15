@@ -1,15 +1,14 @@
 .line {
-    left: 50px;
-    z-index: 111;
-    width: 228px;
-    height: 2px;
-    position: absolute;
-    background: rgba(117, 127, 149, 1) ;
-  }
-  
+  left: 50px;
+  z-index: 111;
+  width: 228px;
+  height: 2px;
+  position: absolute;
+  background: rgba(117, 127, 149, 1);
+}
+
 /* Container for the range slider */
 input[type="range"] {
-  -webkit-appearance: none;
   width: 200px;
   height: 8px;
   background: rgba(248, 43, 169, 1);
@@ -45,9 +44,6 @@ input[type="range"]::-moz-range-track {
   height: 8px;
   border-radius: 4px;
 }
-
-
-
 
 /* Thumb hover effect */
 

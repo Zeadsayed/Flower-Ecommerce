@@ -15,6 +15,11 @@ import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.co
 export class AllCategoryComponent {
   private categories = inject(CategoriesService);
 
+  selectedFilters: [{ category: string[] }, { rateAvg: number[] }] = [
+    { category: [] },
+    { rateAvg: [] },
+  ];
+
   allProducts: Prosucts[] = [];
   subscription: Subscription[] = [];
   paginatedProducts: Prosucts[] = [];
@@ -30,11 +35,42 @@ export class AllCategoryComponent {
     console.log('Card clicked!');
   }
 
+  // Update selected filters and fetch products
+  updateSelectedFilters(
+    filters: [{ category: string[] }, { rateAvg: number[] }]
+  ) {
+    this.selectedFilters = filters;
+    console.log('Received Filters in Parent:', this.selectedFilters);
+    this.filterProducts();
+  }
+
   getCategoryProducts(id?: string) {
     const params: { [key: string]: string | number | boolean } = id
       ? { category: id }
       : {};
     this.categories.getCategoryProducts(params).subscribe({
+      next: (data: any) => {
+        this.allProducts = data.products;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+
+  filterProducts() {
+    const params: {
+      [key: string]: string | number | boolean | string[] | number[];
+    } = {};
+
+    if (this.selectedFilters[0].category.length) {
+      params['category'] = this.selectedFilters[0].category;
+    }
+    if (this.selectedFilters[1].rateAvg.length) {
+      params['rateAvg'] = this.selectedFilters[1].rateAvg;
+    }
+
+    this.categories.filterProducts(params).subscribe({
       next: (data: any) => {
         this.allProducts = data.products;
       },
