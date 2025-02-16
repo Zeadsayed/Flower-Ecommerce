@@ -9,94 +9,30 @@
     </div>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-6">
+    @for (team of teams; track team) {
     <div class="expert-card">
-      <img src="images/expert-team/team1.png" alt="member.name" />
+      <img [src]="team.image" alt="member.name" />
       <div class="content">
-        <h3>Ahmed Mohamed</h3>
-        <p>Senior Manager</p>
+        <h3>{{team.name}}</h3>
+        <p>{{team.position}}</p>
       </div>
       <div class="team-line"></div>
       <div class="flex justify-center gap-8 sm:gap-6 md:gap-2 lg:gap-4 xl:gap-8 mt-3">
-        <a href="icon.link" class="icon">
+        <a [href]="team.social.facebook" class="icon">
           <img src="images/icons/facebook.png" alt="">
         </a>
-        <a href="icon.link" class="icon">
+        <a [href]="team.social.instagram" class="icon">
           <img src="images/icons/insta.png" alt="">
         </a>
-        <a href="icon.link" class="icon">
+        <a [href]="team.social.twitter" class="icon">
           <img src="images/icons/twitter.png" alt="">
         </a>
-        <a href="icon.link" class="icon">
+        <a [href]="team.social.youtube" class="icon">
           <img src="images/icons/youtube.png" alt="">
         </a>
       </div>
     </div>
-    <div class="expert-card">
-      <img src="images/expert-team/team2.png" alt="member.name" />
-      <div class="content">
-        <h3>Ahmed Mohamed</h3>
-        <p>Senior Manager</p>
-      </div>
-      <div class="team-line"></div>
-      <div class="flex justify-center gap-3 sm:gap-6 md:gap-2 lg:gap-4 xl:gap-8 mt-3">
-        <a href="icon.link" class="icon">
-          <img src="images/icons/facebook.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/insta.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/twitter.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/youtube.png" alt="">
-        </a>
-      </div>
-    </div>
-    <div class="expert-card">
-      <img src="images/expert-team/team3.png" alt="member.name" />
-      <div class="content">
-        <h3>Ahmed Mohamed</h3>
-        <p>Senior Manager</p>
-      </div>
-      <div class="team-line"></div>
-      <div class="flex justify-center gap-3 sm:gap-6 md:gap-2 lg:gap-4 xl:gap-8 mt-3">
-        <a href="icon.link" class="icon">
-          <img src="images/icons/facebook.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/insta.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/twitter.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/youtube.png" alt="">
-        </a>
-      </div>
-    </div>
-    <div class="expert-card">
-      <img src="images/expert-team/team4.png" alt="member.name" />
-      <div class="content">
-        <h3>Ahmed Mohamed</h3>
-        <p>Senior Manager</p>
-      </div>
-      <div class="team-line"></div>
-      <div class="flex justify-center gap-3 sm:gap-6 md:gap-2 lg:gap-4 xl:gap-8 mt-3">
-        <a href="icon.link" class="icon">
-          <img src="images/icons/facebook.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/insta.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/twitter.png" alt="">
-        </a>
-        <a href="icon.link" class="icon">
-          <img src="images/icons/youtube.png" alt="">
-        </a>
-      </div>
-    </div>
+    }
   </div>
 </div>
 
