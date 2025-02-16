@@ -28,8 +28,7 @@
                 @for (item of allBestSeller; track $index){
                 <ng-container>
                     <ng-template carouselSlide>
-                        <popular-card [imgCover]="item.imgCover" [price]="item.price" [badge]="badge"
-                            [title]="item.title"></popular-card>
+                        <popular-card [cardData]="item"></popular-card>
                     </ng-template>
                 </ng-container>
                 }

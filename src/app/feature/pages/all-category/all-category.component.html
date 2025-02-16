@@ -1,0 +1,16 @@
+<div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 category-slider p-4">
+
+  <div class="grid lg:grid-cols-6 sm:grid-cols-2 gap-4">
+    <div class="lg:col-span-2 md:col-span-2">
+      <app-sidebar-category></app-sidebar-category>
+    </div>
+
+    <div class="lg:col-span-4 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      @for (product of allProducts; track product) {
+        <a [routerLink]="'/product-detials/'+ product._id">
+      <popular-card [cardData]="product" (addToCart)="handleAddToCart(product)"></popular-card>
+    </a> 
+    }
+    </div>
+  </div>
+</div>

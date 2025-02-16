@@ -21,10 +21,10 @@
 
   <div class="grid lg:grid-cols-4 sm:grid-cols-2">
     @for (item of allProducts; track item) {
-    <popular-card class="flex justify-center" [imgCover]="item.imgCover" [title]="item.title" [title]="item.title"
-      [price]="item.price" (addToCart)="handleAddToCart(item)"></popular-card>
+      <a [routerLink]="'/product-detials/'+ item._id">
+      <popular-card class="flex justify-center" [cardData]="item" (addToCart)="handleAddToCart(item)"></popular-card>
+      </a>
     }
-
   </div>
   @if (allProducts.length ==0) {
   <div class="text-center">
