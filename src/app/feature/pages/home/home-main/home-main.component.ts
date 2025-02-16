@@ -9,6 +9,7 @@ import { GallaryComponent } from './gallary/gallary.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
 import { AuthComponent } from '../auth/auth.component';
 import { AboutComponent } from './about/about.component';
+import { AboutInstgramComponent } from "./about-instgram/about-instgram.component";
 
 @Component({
   selector: 'app-home-main',
@@ -20,8 +21,9 @@ import { AboutComponent } from './about/about.component';
     SpecialGiftsComponent,
     ReviewsComponent,
     BestSellerComponent,
-    AuthComponent,
     AboutComponent,
+    AboutInstgramComponent,
+    AuthComponent,
     GallaryComponent,
   ],
   templateUrl: './home-main.component.html',
