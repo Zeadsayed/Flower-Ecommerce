@@ -1,18 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+.alex-brush-regular {
+  font-family: "Alex Brush", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.rose{
+  font-family: "Alex Brush", serif;
+}
+
 .bgk {
-    width: 136px;
-    height: 17px;
+    width: 85%;
+    height: 10px;
     border-radius: 0 20px 20px 0;
     left: 0;
-    top: 22px;
-    z-index: 0;
+    top: 30px;
+    z-index: -1;
     position: absolute;
     background-color: var(--secondary-color);
   }
   
   .line {
     left: 0;
+    bottom:5px;
     z-index: 111;
-    width: 70px;
+    width: 65%;
     height: 2px;
     position: absolute;
     background: var(--primary-color);
