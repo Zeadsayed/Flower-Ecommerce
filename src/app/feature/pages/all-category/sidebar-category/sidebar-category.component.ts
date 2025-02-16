@@ -1,8 +1,21 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Category } from '../../../../core/interfaces/home-main/category';
 import { Subscription } from 'rxjs';
 import { CategoriesService } from '../../../services/home-main/categories.service';
+import { FormsModule } from '@angular/forms';
+import {
+  LabelType,
+  NgxSliderModule,
+  Options,
+} from '@angular-slider/ngx-slider';
 
 interface Rating {
   stars: number;
@@ -11,15 +24,40 @@ interface Rating {
 
 @Component({
   selector: 'app-sidebar-category',
-  imports: [NgIf],
+  imports: [NgIf, FormsModule, NgxSliderModule, CommonModule],
   templateUrl: './sidebar-category.component.html',
   styleUrl: './sidebar-category.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class SidebarCategoryComponent implements OnInit {
   categories: Category[] = [];
+  keyword: string = '';
 
   selectedCategories: { category: string[] } = { category: [] };
   selectedRates: { rateAvg: number[] } = { rateAvg: [] };
+
+  priceFrom: number = 0;
+  priceTo: number = 1000;
+
+  options: Options = {
+    floor: 0,
+    ceil: 1000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '$' + value;
+        case LabelType.High:
+          return '$' + value;
+        default:
+          return '$' + value;
+      }
+    },
+  };
+
+  changePrice(e: any) {
+    this.priceFrom = e.value;
+    this.priceTo = e.highValue;
+  }
 
   subscription: Subscription[] = [];
   isOpen = false;
@@ -28,43 +66,30 @@ export class SidebarCategoryComponent implements OnInit {
     [key: string]: string;
   }>(); // Emit object
   @Output() selectedFilter = new EventEmitter<
-    [{ category: string[] }, { rateAvg: number[] }]
+    [
+      { category: string[] },
+      { rateAvg: number[] },
+      { keyword: string },
+      { 'price[gte]': number },
+      { 'price[lte]': number }
+    ]
   >();
 
   private _categoriesService = inject(CategoriesService);
-
-  // categories = [
-  //   { id: 'cat1', name: 'Home & Living', count: 8 },
-  //   { id: 'cat2', name: 'Garment Care', count: 8 },
-  //   { id: 'cat3', name: 'Jewelry & Accessories', count: 8 },
-  //   { id: 'cat4', name: 'Occasion Gifts', count: 8 },
-
-  //   { id: 'cat5', name: 'Office & Stationery', count: 8 },
-  //   { id: 'cat6', name: 'Personalised Gifts', count: 8 },
-
-  //   { id: 'cat7', name: 'Gifts Box', count: 8 },
-  // ];
 
   brands = [
     { id: 'brand1', name: 'Trooba', count: 8 },
     { id: 'brand2', name: 'Sundrey', count: 8 },
     { id: 'brand3', name: 'Sahoo Gifts', count: 8 },
-
     { id: 'brand4', name: 'Casterly', count: 8 },
-
     { id: 'brand5', name: 'Mainden Gifts', count: 8 },
-
-    // ... add other brands
   ];
 
   sales = [
     { id: 'sale1', name: 'On Sale', count: 8 },
     { id: 'sale2', name: 'In Stock', count: 8 },
     { id: 'sale2', name: 'Out Of Stock', count: 8 },
-
     { id: 'sale4', name: 'Discount', count: 8 },
-
-    // ... add other sales options
   ];
 
   ratings = [
@@ -125,11 +150,50 @@ export class SidebarCategoryComponent implements OnInit {
 
   applyFilters() {
     // Emit selected filters to the parent
-    this.selectedFilter.emit([this.selectedCategories, this.selectedRates]);
-    console.log('Filters Applied:', [
+    this.selectedFilter.emit([
       this.selectedCategories,
       this.selectedRates,
+      { keyword: this.keyword },
+      { 'price[gte]': this.priceFrom },
+      { 'price[lte]': this.priceTo },
     ]);
+  }
+
+  clearFilters() {
+    // Reset filters to default values
+    this.selectedCategories = { category: [] };
+    this.selectedRates = { rateAvg: [] };
+    this.keyword = '';
+    this.priceFrom = 0;
+    this.priceTo = 1000;
+
+    // Emit empty filters to reset parent component
+    this.selectedFilter.emit([
+      { category: [] },
+      { rateAvg: [] },
+      { keyword: '' },
+      { 'price[gte]': 0 },
+      { 'price[lte]': 1000 },
+    ]);
+
+    // Reset all checkboxes
+    const checkboxes = document.querySelectorAll<HTMLInputElement>(
+      'input[type="checkbox"]'
+    );
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    // Reset keyword input
+    const keywordInput = document.getElementById(
+      'floating_standard'
+    ) as HTMLInputElement;
+    if (keywordInput) {
+      keywordInput.value = '';
+    }
+
+    // Call function to reload all categories/products
+    this.getAllCategories();
   }
 
   getAllCategories() {

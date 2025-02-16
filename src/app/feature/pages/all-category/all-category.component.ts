@@ -15,9 +15,18 @@ import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.co
 export class AllCategoryComponent {
   private categories = inject(CategoriesService);
 
-  selectedFilters: [{ category: string[] }, { rateAvg: number[] }] = [
+  selectedFilters: [
+    { category: string[] },
+    { rateAvg: number[] },
+    { keyword: string },
+    { 'price[gte]': number },
+    { 'price[lte]': number }
+  ] = [
     { category: [] },
     { rateAvg: [] },
+    { keyword: '' },
+    { 'price[gte]': 0 },
+    { 'price[lte]': 0 },
   ];
 
   allProducts: Prosucts[] = [];
@@ -37,18 +46,32 @@ export class AllCategoryComponent {
 
   // Update selected filters and fetch products
   updateSelectedFilters(
-    filters: [{ category: string[] }, { rateAvg: number[] }]
+    filters: [
+      { category: string[] },
+      { rateAvg: number[] },
+      { keyword: string },
+      { 'price[gte]': number },
+      { 'price[lte]': number }
+    ]
   ) {
     this.selectedFilters = filters;
-    console.log('Received Filters in Parent:', this.selectedFilters);
-    this.filterProducts();
+
+    // If all filters are empty, reload all products
+    if (
+      filters[0].category.length === 0 &&
+      filters[1].rateAvg.length === 0 &&
+      filters[2].keyword === '' &&
+      filters[3]['price[gte]'] === 0 &&
+      filters[4]['price[lte]'] === 1000
+    ) {
+      this.getCategoryProducts(); // Calls API to load all products
+    } else {
+      this.filterProducts(); // Applies selected filters
+    }
   }
 
-  getCategoryProducts(id?: string) {
-    const params: { [key: string]: string | number | boolean } = id
-      ? { category: id }
-      : {};
-    this.categories.getCategoryProducts(params).subscribe({
+  getCategoryProducts() {
+    this.categories.getCategoryProducts({}).subscribe({
       next: (data: any) => {
         this.allProducts = data.products;
       },
@@ -69,6 +92,18 @@ export class AllCategoryComponent {
     if (this.selectedFilters[1].rateAvg.length) {
       params['rateAvg'] = this.selectedFilters[1].rateAvg;
     }
+    if (this.selectedFilters[2].keyword) {
+      // Ensure keyword is accessed correctly
+      params['keyword'] = this.selectedFilters[2].keyword;
+    }
+    if (this.selectedFilters[3]['price[gte]']) {
+      // Ensure keyword is accessed correctly
+      params['price[gte]'] = this.selectedFilters[3]['price[gte]'];
+    }
+    if (this.selectedFilters[4]['price[lte]']) {
+      // Ensure keyword is accessed correctly
+      params['price[lte]'] = this.selectedFilters[4]['price[lte]'];
+    }
 
     this.categories.filterProducts(params).subscribe({
       next: (data: any) => {
@@ -79,6 +114,7 @@ export class AllCategoryComponent {
       },
     });
   }
+
   ngOnDestroy(): void {
     this.subscription && this.subscription.forEach((s) => s.unsubscribe());
   }

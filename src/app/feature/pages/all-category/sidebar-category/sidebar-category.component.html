@@ -12,8 +12,17 @@
 <!-- Sidebar -->
 <div [class]="'transform transition-transform duration-300 ease-in-out ' + 
             (isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0') + 
-            ' fixed md:relative left-0 top-0 h-full md:h-auto z-50 bg-white overflow-y-auto'" class="w-[302px]">
+            ' fixed md:relative left-0 top-0 h-full md:h-auto z-50 bg-white overflow-y-auto'" class="w-[302px] pt-8">
 
+  <div class="m-4">
+    <input type="text" id="floating_standard"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-800 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-900 focus:outline-none focus:ring-0 focus:border-blue-900 peer"
+      placeholder=" " [(ngModel)]="keyword" />
+    <label for="floating_standard"
+      class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-14 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Search
+      Products
+    </label>
+  </div>
   <!-- Category Section -->
   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Category</h2>
@@ -35,7 +44,7 @@
   </div>
 
   <!-- Brands Section -->
-  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+  <!-- <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Brands</h2>
     <div class="line"></div>
     <div class="space-y-2 mt-11">
@@ -51,20 +60,26 @@
       </div>
       }
     </div>
-  </div>
+  </div> -->
 
   <!-- Price Range Section -->
   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Price Rating</h2>
     <div class="line"></div>
+
     <div class="flex flex-col text-center space-x-2 mt-11">
-      <span class="text-primary text-left font-bold mb-1">$0 - $36.00</span>
-      <input type="range" min="0" max="100" value="25" class="w-full" />
+      <span class="text-primary text-left font-bold mb-1">
+        ${{ priceFrom | number:'1.2-2'}} - ${{ priceTo | number:'1.2-2'}}
+      </span>
+
+      <ngx-slider [(value)]="priceFrom" [(highValue)]="priceTo" [options]="options"
+        (userChange)="changePrice($event)"></ngx-slider>
     </div>
   </div>
 
+
   <!-- Sales Section -->
-  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+  <!-- <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Sales</h2>
     <div class="line"></div>
     <div class="space-y-2 mt-11">
@@ -80,7 +95,7 @@
       </div>
       }
     </div>
-  </div>
+  </div> -->
 
   <!-- Ratings Section -->
   <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
@@ -103,20 +118,20 @@
   </div>
 
   <!-- Colors Section -->
-  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
-    <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Colors</h2>
-    <div class="line"></div>
-    <div class="flex justify-between space-x-2 mt-11">
-      @for (color of colors; track color) {
-      <div class="w-6 h-6 rounded-full cursor-pointer hover:ring-2 ring-offset-2 ring-gray-300"
-        [style.background-color]="color">
+  <!-- <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+      <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Colors</h2>
+      <div class="line"></div>
+      <div class="flex justify-between space-x-2 mt-11">
+        @for (color of colors; track color) {
+        <div class="w-6 h-6 rounded-full cursor-pointer hover:ring-2 ring-offset-2 ring-gray-300"
+          [style.background-color]="color">
+        </div>
+        }
       </div>
-      }
-    </div>
-  </div>
+    </div> -->
 
   <!-- Sizes Section -->
-  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
+  <!-- <div class="mb-6 rounded-[20px] p-[24px] shadow-lg">
     <h2 class="text-lg font-bold mb-5 text-dark-blue relative">Sizes</h2>
     <div class="line"></div>
     <div class="space-y-2 mt-11">
@@ -129,11 +144,15 @@
       </div>
       }
     </div>
-  </div>
+  </div> -->
 
-  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg ">
-    <!-- Clear Filters Button -->
-    <button (click)="applyFilters()" class="w-full bg-primary text-white py-3 rounded-[20px]">Apply Filters</button>
+  <div class="mb-6 rounded-[20px] p-[24px] shadow-lg flex justify-center items-center">
     <!-- Apply Filters Buuton -->
+    <button (click)="applyFilters()" class="w-full bg-primary text-white py-3 mx-2 rounded-[20px]">Apply
+      Filters</button>
+    <!-- Clear Filters Button -->
+    <button (click)="clearFilters()" class="w-full bg-gray-400 text-white py-3 rounded-[20px]">
+      Clear Filters
+    </button>
   </div>
 </div>
