@@ -6,62 +6,6 @@
   position: absolute;
   background: rgba(117, 127, 149, 1);
 }
-/* Style for the track background (unselected part) */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 8px;
-  background: gray; /* Unselected part of the track */
-  border-radius: 4px;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Webkit Browsers (Chrome, Safari, Edge) */
-input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8px;
-  background: gray; /* Unselected part */
-  border-radius: 4px;
-}
-
-/* Selected portion (left of thumb) */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 16px;
-  width: 16px;
-  background: rgba(248, 43, 169, 1);
-  border-radius: 50%;
-  position: relative;
-  margin-top: -4px;
-  box-shadow: -100vw 0 0 100vw rgba(248, 43, 169, 1); /* Creates effect for selected range */
-}
-
-/* Mozilla Firefox */
-input[type="range"]::-moz-range-track {
-  width: 100%;
-  height: 8px;
-  background: gray;
-  border-radius: 4px;
-}
-
-input[type="range"]::-moz-range-progress {
-  background: rgba(248, 43, 169, 1); /* Selected part */
-  height: 8px;
-  border-radius: 4px;
-}
-
-/* Thumb styling for Firefox */
-input[type="range"]::-moz-range-thumb {
-  height: 16px;
-  width: 16px;
-  background: rgba(248, 43, 169, 1);
-  border-radius: 50%;
-}
 
 .ngx-slider {
   margin: 0px !important;

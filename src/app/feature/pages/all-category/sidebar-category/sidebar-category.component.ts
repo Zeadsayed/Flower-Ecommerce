@@ -60,7 +60,7 @@ export class SidebarCategoryComponent implements OnInit {
   }
 
   subscription: Subscription[] = [];
-  isOpen = false;
+  open = false;
 
   @Output() selectedCategoriesChange = new EventEmitter<{
     [key: string]: string;
@@ -98,6 +98,7 @@ export class SidebarCategoryComponent implements OnInit {
     { stars: 3 },
     { stars: 2 },
     { stars: 1 },
+    { stars: 1 },
   ];
 
   colors = [
@@ -121,7 +122,7 @@ export class SidebarCategoryComponent implements OnInit {
   }
 
   toggleSidebar() {
-    this.isOpen = !this.isOpen;
+    this.open = !this.open;
     // Toggle body class to prevent scrolling when sidebar is open
   }
 

@@ -25,12 +25,21 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'product-detials/:id', loadComponent: () => import('./feature/pages/product-details/product-details.component').then((c) => c.ProductDetailsComponent)
+      },
+      {
         path: 'all-categories',
         canActivate: [],
         loadChildren: () =>
           import('./feature/pages/all-category/AllCategory.route').then(
             (c) => c.routes
           ),
+      },
+      {
+        path: 'about',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/about/About.route').then((c) => c.routes),
       },
     ],
   },

@@ -1,4 +1,4 @@
-export interface Prosucts {
+export interface Products {
   _id: string;
   title: string;
   slug: string;
@@ -15,10 +15,11 @@ export interface Prosucts {
   __v: number;
   discount: number;
   sold: number;
+  rateAvg: number;
   id: string;
 }
 
 export interface ProsuctsResponse {
-  products: Prosucts[];
+  products: Products[];
   message: string;
 }

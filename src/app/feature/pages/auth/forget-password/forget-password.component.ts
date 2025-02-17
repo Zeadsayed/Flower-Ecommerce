@@ -7,10 +7,6 @@ import {
   Output,
 } from '@angular/core';
 import {
-  SetPassword,
-  SetPasswordForm,
-} from '../../../../../core/interfaces/auth/set-password';
-import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -19,21 +15,26 @@ import {
 import { Subscription } from 'rxjs';
 import { AuthApiService } from 'auth-api';
 import { CommonModule } from '@angular/common';
-import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
+import { AuthButtonComponent } from '../../../../shared/components/ui/auth-button/auth-button.component';
+import {
+  ForgetPassword,
+  ForgetPasswordForm,
+} from '../../../../core/interfaces/auth/forget-password';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-set-password',
+  selector: 'app-forget-password',
   imports: [ReactiveFormsModule, CommonModule, AuthButtonComponent],
-  templateUrl: './set-password.component.html',
-  styleUrl: './set-password.component.scss',
+  templateUrl: './forget-password.component.html',
+  styleUrl: './forget-password.component.scss',
 })
-export class SetPasswordComponent implements OnInit, OnDestroy {
+export class ForgetPasswordComponent implements OnInit, OnDestroy {
   isSignIn: boolean = true;
   forgetPass: boolean = false;
   verify: boolean = false;
   setPass: boolean = false;
 
-  setPasswordForm!: FormGroup<SetPasswordForm>;
+  forgetPasswordForm!: FormGroup<ForgetPasswordForm>;
   submitted: boolean = false;
   loading: boolean = false;
   subscription: Subscription[] = [];
@@ -41,63 +42,65 @@ export class SetPasswordComponent implements OnInit, OnDestroy {
   @Output() changeState = new EventEmitter<string>(); // Event emitter to notify parent
 
   private _AuthApiService = inject(AuthApiService);
+  private authService = inject(AuthService);
 
   ngOnInit(): void {
-    this.initSetPasswordForm();
+    this.initLoginForm();
   }
 
-  setPassword() {
-    this.changeState.emit('login');
+  recoverPassword() {
+    this.changeState.emit('verify');
   }
-
-  initSetPasswordForm(): void {
-    this.setPasswordForm = new FormGroup<SetPasswordForm>({
+  //#region init form
+  initLoginForm(): void {
+    this.forgetPasswordForm = new FormGroup<ForgetPasswordForm>({
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
       ]),
-      newPassword: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-        ),
-      ]),
     });
   }
 
-  get setPasswordControls(): SetPasswordForm {
-    return this.setPasswordForm.controls;
+  get forgetPasswordControls(): ForgetPasswordForm {
+    return this.forgetPasswordForm.controls;
   }
+  //#endregion
 
+  //#region validation check
   validationChecker(): boolean {
-    if (this.setPasswordForm.invalid) {
+    if (this.forgetPasswordForm.invalid) {
       return false;
     }
     return true;
   }
+  //#endregion
 
-  resetPassword() {
+  //#region submit form
+  forgetPassword() {
     this.submitted = true;
     if (!this.validationChecker()) return;
     this.loading = true;
-    let data: SetPassword = {
-      email: this.setPasswordControls.email.value!,
-      newPassword: this.setPasswordControls.newPassword.value!,
+    let data: ForgetPassword = {
+      email: this.forgetPasswordControls.email.value!,
     };
-    this._AuthApiService.resetPassword(data).subscribe({
+    let sub = this._AuthApiService.forgetPassword(data).subscribe({
       next: (res) => {
         if (res.message === 'success') {
+          // localStorage.setItem('email', data.email);
+          this.authService.setUserEmail(data.email);
           this.submitted = false;
           this.loading = false;
-          this.setPassword();
+          this.recoverPassword();
         }
       },
       error: (err) => {
+        this.submitted = false;
         this.loading = false;
       },
     });
+    this.subscription.push(sub);
   }
+  //#endregion
 
   ngOnDestroy(): void {
     this.subscription && this.subscription.forEach((s) => s.unsubscribe());
