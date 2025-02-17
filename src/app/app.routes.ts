@@ -36,6 +36,13 @@ export const routes: Routes = [
           ),
       },
    
+
+      {
+        path: 'about',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/about/About.route').then((c) => c.routes),
+      },
     ],
   },
  

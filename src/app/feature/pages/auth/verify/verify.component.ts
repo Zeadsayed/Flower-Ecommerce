@@ -8,7 +8,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Verify, VerifyForm } from '../../../../../core/interfaces/auth/verify';
 import {
   FormControl,
   FormGroup,
@@ -17,10 +16,11 @@ import {
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthApiService } from 'auth-api';
-import { AuthService } from '../../../../services/auth/auth.service';
-import { ForgetPassword } from '../../../../../core/interfaces/auth/forget-password';
 import { CommonModule } from '@angular/common';
-import { AuthButtonComponent } from '../../../../../shared/components/ui/auth-button/auth-button.component';
+import { AuthButtonComponent } from '../../../../shared/components/ui/auth-button/auth-button.component';
+import { Verify, VerifyForm } from '../../../../core/interfaces/auth/verify';
+import { AuthService } from '../../../services/auth/auth.service';
+import { ForgetPassword } from '../../../../core/interfaces/auth/forget-password';
 
 @Component({
   selector: 'app-verify',

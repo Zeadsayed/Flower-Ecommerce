@@ -1,24 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CategoriesService } from '../../services/home-main/categories.service';
-import { Prosucts } from '../../../core/interfaces/home-main/Products';
+import { Products } from '../../../core/interfaces/home-main/Products';
 import { CategoryCardComponent } from '../../../shared/components/ui/category-card/category-card.component';
 import { PopularCardComponent } from '../../../shared/components/ui/popular-card/popular-card.component';
 import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.component';
 import { RouterLink } from '@angular/router';
+import { AuthComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-all-category',
-  imports: [PopularCardComponent, SidebarCategoryComponent,RouterLink],
+  imports: [
+    PopularCardComponent,
+    SidebarCategoryComponent,
+    RouterLink,
+    AuthComponent,
+  ],
   templateUrl: './all-category.component.html',
   styleUrl: './all-category.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class AllCategoryComponent {
   private categories = inject(CategoriesService);
 
-  allProducts: Prosucts[] = [];
+  allProducts: Products[] = [];
   subscription: Subscription[] = [];
-  paginatedProducts: Prosucts[] = [];
+  paginatedProducts: Products[] = [];
   page = 1; // Current page
   pageSize = 6; // Number of items per page
   maxVisiblePages = 4; // Max visible pages before ellipsis

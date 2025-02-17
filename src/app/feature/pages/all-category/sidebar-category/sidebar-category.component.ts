@@ -10,12 +10,10 @@ interface Rating {
   selector: 'app-sidebar-category',
   imports: [NgIf],
   templateUrl: './sidebar-category.component.html',
-  styleUrl: './sidebar-category.component.scss'
+  styleUrl: './sidebar-category.component.scss',
 })
 export class SidebarCategoryComponent {
-
-
-  isOpen = false;
+  open = false;
 
   categories = [
     { id: 'cat1', name: 'Home & Living', count: 8 },
@@ -27,7 +25,6 @@ export class SidebarCategoryComponent {
     { id: 'cat6', name: 'Personalised Gifts', count: 8 },
 
     { id: 'cat7', name: 'Gifts Box', count: 8 },
-
 
     // ... add other categories
   ];
@@ -59,7 +56,7 @@ export class SidebarCategoryComponent {
     { stars: 4 },
     { stars: 3 },
     { stars: 2 },
-    { stars: 1 }
+    { stars: 1 },
   ];
 
   colors = [
@@ -67,7 +64,7 @@ export class SidebarCategoryComponent {
     'rgba(76,175,80,1)',
     'rgba(23,162,184,1)',
     '#FCD34D',
-    'rgba(244,67,54,1)'
+    'rgba(244,67,54,1)',
   ];
 
   sizes = [
@@ -75,10 +72,11 @@ export class SidebarCategoryComponent {
     { id: 'size2', name: 'Small' },
     { id: 'size3', name: 'Medium' },
     { id: 'size4', name: 'Large' },
-    { id: 'size5', name: 'Extra Large' }
+    { id: 'size5', name: 'Extra Large' },
   ];
 
   toggleSidebar() {
-    this.isOpen = !this.isOpen;
+    this.open = !this.open;
     // Toggle body class to prevent scrolling when sidebar is open
-  }  }
+  }
+}

@@ -15,6 +15,7 @@ export interface BestSellerItem {
   __v: number;
   discount: number;
   sold: number;
+  rateAvg: number;
   id: string;
 }
 

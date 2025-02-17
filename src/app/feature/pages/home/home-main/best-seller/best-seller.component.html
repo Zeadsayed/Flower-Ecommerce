@@ -1,6 +1,6 @@
-<div class="max-w-screen-xl sm:mx-2 xl:mx-auto lg:mx-auto m-4 ">
-    <div class="best-seller grid lg:grid-cols-4 sm:grid-cols-1">
-        <div class="description lg:col-span-1 sm:col-span-1">
+<div class="max-w-screen-xl container px-4">
+    <div class="best-seller grid grid-cols-1 lg:grid-cols-12 items-start">
+        <div class="description lg:col-span-3">
             <span class="header text-primary uppercase">Premium Gifts</span>
             <div class="desc my-8">
                 <h1 class="heading text-dark-blue">Best <span class="seller-gifts text-primary">Seller <br> Gifts</span>
@@ -23,7 +23,7 @@
             </div>
 
         </div>
-        <div class="carousel lg:col-span-3 sm:col-span-1">
+        <div class="carousel lg:col-span-9 flex flex-col gap-6 ">
             <owl-carousel-o [options]="customOptions">
                 @for (item of allBestSeller; track $index){
                 <ng-container>

@@ -31,7 +31,6 @@ export class SpecialGiftsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (res: ISpecialGifts[]) => {
           this.gifts = res;
-          console.log('Gifts Data:', this.gifts);
         },
         error: (err) => {
           console.error('Error fetching gifts:', err);

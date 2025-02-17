@@ -7,8 +7,8 @@ import { BestSellerComponent } from './best-seller/best-seller.component';
 import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
 import { GallaryComponent } from './gallary/gallary.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
-import { AuthComponent } from '../auth/auth.component';
-import { AboutComponent } from './about/about.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { AuthComponent } from '../../auth/auth.component';
 
 @Component({
   selector: 'app-home-main',
@@ -21,8 +21,8 @@ import { AboutComponent } from './about/about.component';
     ReviewsComponent,
     BestSellerComponent,
     AuthComponent,
-    AboutComponent,
     GallaryComponent,
+    AboutUsComponent,
   ],
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.scss',
