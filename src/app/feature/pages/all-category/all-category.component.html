@@ -5,12 +5,12 @@
       <app-sidebar-category></app-sidebar-category>
     </div>
 
-    <div class="lg:col-span-4 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-4 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
       @for (product of allProducts; track product) {
-        <a [routerLink]="'/product-detials/'+ product._id">
-      <popular-card [cardData]="product" (addToCart)="handleAddToCart(product)"></popular-card>
-    </a> 
-    }
+      <a [routerLink]="'/product-detials/'+ product._id">
+        <popular-card [cardData]="product" (addToCart)="handleAddToCart(product)"></popular-card>
+      </a>
+      }
     </div>
   </div>
 </div>

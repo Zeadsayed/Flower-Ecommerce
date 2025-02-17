@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { ModalComponent } from '../../../../shared/components/ui/modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { VerifyComponent } from './verify/verify.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
-import { ModalService } from '../../../../shared/services/modal.service';
+import { ModalComponent } from '../../../shared/components/ui/modal/modal.component';
+import { ModalService } from '../../../shared/services/modal.service';
 
 @Component({
   selector: 'app-auth',

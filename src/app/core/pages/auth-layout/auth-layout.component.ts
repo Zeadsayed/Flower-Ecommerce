@@ -1,23 +1,21 @@
-import { LoginComponent } from './../../../feature/pages/home/auth/login/login.component';
-import { ForgetPasswordComponent } from './../../../feature/pages/home/auth/forget-password/forget-password.component';
-import { Login } from './../../../../../projects/auth-api/src/lib/interfaces/login';
-import { Component, inject } from '@angular/core';
-import {  RouterOutlet } from '@angular/router';
-import { ModalService } from '../../../shared/services/modal.service';
-import { SetPasswordComponent } from '../../../feature/pages/home/auth/set-password/set-password.component';
-import { VerifyComponent } from '../../../feature/pages/home/auth/verify/verify.component';
+import { Component } from '@angular/core';
+import { LoginComponent } from '../../../feature/pages/auth/login/login.component';
+import { ForgetPasswordComponent } from '../../../feature/pages/auth/forget-password/forget-password.component';
+import { VerifyComponent } from '../../../feature/pages/auth/verify/verify.component';
+import { SetPasswordComponent } from '../../../feature/pages/auth/set-password/set-password.component';
 
 @Component({
   selector: 'app-auth-layout',
-  imports: [  LoginComponent,
+  imports: [
+    LoginComponent,
     ForgetPasswordComponent,
     VerifyComponent,
-    SetPasswordComponent,],
+    SetPasswordComponent,
+  ],
   templateUrl: './auth-layout.component.html',
-  styleUrl: './auth-layout.component.scss'
+  styleUrl: './auth-layout.component.scss',
 })
 export class AuthLayoutComponent {
-
   isSignIn: boolean = true;
   forgetPass: boolean = false;
   verify: boolean = false;
@@ -62,5 +60,4 @@ export class AuthLayoutComponent {
     this.verify = false;
     this.setPass = false;
   }
- 
 }
