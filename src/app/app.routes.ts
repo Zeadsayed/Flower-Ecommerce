@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './core/pages/auth-layout/auth-layout.component';
+import { ProductDetailsComponent } from './feature/pages/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,8 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
+      { path: 'product-details/:id', component: ProductDetailsComponent },
+
       {
         path: 'home',
         canActivate: [],
@@ -25,9 +28,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'product-detials/:id', loadComponent: () => import('./feature/pages/product-details/product-details.component').then((c) => c.ProductDetailsComponent)
-      },
-      {
         path: 'all-categories',
         canActivate: [],
         loadChildren: () =>
@@ -35,6 +35,8 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
+   
+
       {
         path: 'about',
         canActivate: [],
@@ -43,11 +45,13 @@ export const routes: Routes = [
       },
     ],
   },
+ 
   {
     path: 'auth',
     loadComponent: () =>
       import('./core/pages/auth-layout/auth-layout.component').then(
         (c) => c.AuthLayoutComponent
       ),
-  }
+  },
+
 ];

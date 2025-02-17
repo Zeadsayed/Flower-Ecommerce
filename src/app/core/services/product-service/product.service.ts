@@ -13,11 +13,15 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProductDetials(productId: string): Observable<ProductRes> {
+  getProductDetials(productId: string ): Observable<ProductRes> {
     return this.http.get<ProductRes>(this.env + ApiRoutes.product.singleProduct(productId));
 
     
   }
+  getRelatedProducts(categoryId: string): Observable<ProductRes> {
+    return this.http.get<ProductRes>(this.env+ApiRoutes.product.relatedProducts(categoryId));
+  }
+ 
 }
 
   
