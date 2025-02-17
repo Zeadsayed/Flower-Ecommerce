@@ -3,14 +3,14 @@ import { PopularCardComponent } from '../../../../../shared/components/ui/popula
 import { Category } from '../../../../../core/interfaces/home-main/category';
 import { CategoriesService } from '../../../../services/home-main/categories.service';
 import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSeller';
-import { Prosucts } from '../../../../../core/interfaces/home-main/Products';
+import { Products } from '../../../../../core/interfaces/home-main/Products';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-popular-items',
-  imports: [PopularCardComponent, CommonModule,RouterLink],
+  imports: [PopularCardComponent, CommonModule, RouterLink],
   templateUrl: './popular-items.component.html',
   styleUrl: './popular-items.component.scss',
 })
@@ -21,7 +21,7 @@ export class PopularItemsComponent implements OnInit {
   activeCategory: string | null = null;
   allCategories: Category[] = [];
   allBestItems: BestSellerItem[] = [];
-  allProducts: Prosucts[] = [];
+  allProducts: Products[] = [];
   //#region Component Functionality
   ngOnInit(): void {
     this.getAllCategories();

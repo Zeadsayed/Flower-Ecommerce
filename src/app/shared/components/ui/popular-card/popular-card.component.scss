@@ -1,71 +1,58 @@
 .card {
   .cover {
     position: relative;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    //height: 250px;
     border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-      #overlay {
-        display: block;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+  }
+
+  #overlay {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    transition: opacity 0.3s ease-in-out;
+    background-color: var(--primary-color);
+    button {
+      background-color: var(--primary-color);
+      opacity: 1 !important;
+      &:hover {
+        background-color: var(--primary-color);
+        opacity: 0.5 !important;
       }
     }
-    .badge {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      height: 24px;
-      padding: 5px 15px 20px 12px;
-      border-radius: 50px;
-      -webkit-border-radius: 50px;
-      -moz-border-radius: 50px;
-      -ms-border-radius: 50px;
-      -o-border-radius: 50px;
-      background-color: var(--primary-color);
-      color: #fff;
-      font-family: var(--font-roboto);
-      font-size: 11px;
-      font-weight: 500;
-      line-height: 19.8px;
-      letter-spacing: 1px;
-      text-align: left;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
-    }
-    img {
-      max-width: 302px;
-      height: 272px;
-      border-radius: 20px;
-    }
-    #overlay {
-      border-radius: 20px;
-      position: absolute; /* Sit on top of the page content */
-      display: none;
-      height: 100%; /* Full height (cover the whole page) */
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(
-        --primary-color
-      ); /* Black background with opacity */
-      z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-      cursor: pointer; /* Add a pointer on hover */
-      opacity: 0.5;
-    }
   }
+
   .item-title {
     font-size: 17px;
     font-weight: 600;
     line-height: 20.4px;
     color: var(--dark-blue);
   }
+
   .price {
     font-size: 16px;
     font-weight: 500;
     line-height: 28.8px;
-    color: var(--primary-color);
+    color: #dee2e6;
   }
+
+  .priceAfterDiscount {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28.8px;
+    color: #f05454;
+  }
+
   .bag-icon {
     width: 42px;
     height: 42px;
