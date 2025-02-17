@@ -28,7 +28,7 @@
                 @for (item of allBestSeller; track $index){
                 <ng-container>
                     <ng-template carouselSlide>
-                        <a [routerLink]="'/product-details/' + item._id">
+                        <a [routerLink]="['/product-details', item._id]">
 
                         <popular-card [cardData]="item"></popular-card>
                         </a>

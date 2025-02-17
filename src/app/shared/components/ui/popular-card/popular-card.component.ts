@@ -11,8 +11,6 @@ import { Product } from '../../../../core/interfaces/product-res';
 })
 export class PopularCardComponent {
   @Input() cardData!: Prosucts;
-  
-
   @Input() badge: string = '';
   @Input() imgCover: string = '';
   @Input() title: string = '';

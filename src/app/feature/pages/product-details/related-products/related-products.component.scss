@@ -1,37 +1,36 @@
 .head-title {
-    font-size: 1.5rem; /* Responsive font size */
-    font-weight: 700; /* Bold font weight */
-    line-height: 1.4; /* Proper text spacing */
-    color: var(--dark-blue); /* Primary color for text */
-    text-align: left; /* Align text to the left */
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--dark-blue);
+    text-align: left;
     position: relative;
-    display: inline-block; /* Ensures proper spacing with background */
+    display: inline-block;
     padding-left: 5px;
 }
 
 /* Background Element */
 .bgk {
     position: absolute;
-    top: 50%; /* Center relative to text */
-    left: 0; /* Start from the left */
-    transform: translateY(-50%); /* Align with text center */
-    background-color: var(--secondary-color); /* Secondary color */
-    z-index: -1; /* Send behind the text */
-    border-radius: 0 20px 20px 0; /* Rounded right side */
-    height: 100%; /* Adjust to text height */
-    min-height: 30px; /* Ensures visibility */
-    width: 40%; /* Responsive width */
-    max-width: 150px; /* Prevents too large backgrounds */
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: var(--secondary-color);
+    z-index: -1;
+    border-radius: 0 20px 20px 0;
+    height: 100%;
+    min-height: 30px;
+    width: 40%;
+    max-width: 150px;
 }
 
 /* Line under the text */
 .line {
     position: absolute;
-    bottom: -5px; /* Slight gap below the text */
+    bottom: -5px;
     left: 0;
-    width: 40px; /* Fixed width */
-    height: 3px; /* Thickness */
-    background: rgba(140, 82, 255, 1); /* Line color */
-    z-index: 1; /* Above background */
+    width: 40px;
+    height: 3px;
+    background: rgba(140, 82, 255, 1);
+    z-index: 1;
 }
-

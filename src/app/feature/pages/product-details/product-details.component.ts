@@ -58,16 +58,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.productService.getRelatedProducts(categoryId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
-        console.log('API Response for Related Products:', response);
-  
-        if (response && Array.isArray(response.products)) { // Ensure it's an array
-          this.relatedProducts = response.products;
-          console.log('Processed Related Products:', this.relatedProducts);
-        } else {
-          console.log('No related products found.');
-        }
+        this.relatedProducts = response?.products || [];
       });
   }
+  
 
   changeImage(selectedImage: string): void {
     this.mainImage = selectedImage;
@@ -89,8 +83,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         product: this.product,
         quantity: this.quantity
       };
-      // You probably need to add this to a cart service
-      console.log('Added to Cart:', cartItem);
     }
   }
 
