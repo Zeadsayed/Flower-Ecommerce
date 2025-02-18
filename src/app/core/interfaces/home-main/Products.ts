@@ -19,7 +19,7 @@ export interface Products {
   id: string;
 }
 
-export interface ProsuctsResponse {
+export interface ProductsResponse {
   products: Products[];
   message: string;
 }

@@ -7,6 +7,7 @@ import { PopularCardComponent } from '../../../shared/components/ui/popular-card
 import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.component';
 import { RouterLink } from '@angular/router';
 import { AuthComponent } from '../auth/auth.component';
+import { FilterProducts } from '../../../core/interfaces/all-categories/filter-products';
 
 @Component({
   selector: 'app-all-category',
@@ -23,6 +24,13 @@ import { AuthComponent } from '../auth/auth.component';
 export class AllCategoryComponent {
   private categories = inject(CategoriesService);
 
+  selectedFilters: FilterProducts = {
+    category: [],
+    rateAvg: [],
+    keyword: '',
+    'price[gte]': 0,
+    'price[lte]': 1000,
+  };
   allProducts: Products[] = [];
   subscription: Subscription[] = [];
   paginatedProducts: Products[] = [];
@@ -38,11 +46,24 @@ export class AllCategoryComponent {
     console.log('Card clicked!');
   }
 
-  getCategoryProducts(id?: string) {
-    const params: { [key: string]: string | number | boolean } = id
-      ? { category: id }
-      : {};
-    this.categories.getCategoryProducts(params).subscribe({
+  // Update selected filters and fetch products
+  updateSelectedFilters(filters: FilterProducts) {
+    this.selectedFilters = { ...filters };
+    if (
+      filters.category.length === 0 &&
+      filters.rateAvg.length === 0 &&
+      filters.keyword === '' &&
+      filters['price[gte]'] === 0 &&
+      filters['price[lte]'] === 1000
+    ) {
+      this.getCategoryProducts();
+    } else {
+      this.filterProducts();
+    }
+  }
+
+  getCategoryProducts() {
+    this.categories.getCategoryProducts({}).subscribe({
       next: (data: any) => {
         this.allProducts = data.products;
       },
@@ -51,6 +72,36 @@ export class AllCategoryComponent {
       },
     });
   }
+
+  filterProducts() {
+    const params: Partial<FilterProducts> = {};
+
+    if (this.selectedFilters.category.length) {
+      params.category = [...this.selectedFilters.category];
+    }
+    if (this.selectedFilters.rateAvg.length) {
+      params.rateAvg = [...this.selectedFilters.rateAvg];
+    }
+    if (this.selectedFilters.keyword) {
+      params.keyword = this.selectedFilters.keyword;
+    }
+    if (this.selectedFilters['price[gte]'] !== 0) {
+      params['price[gte]'] = this.selectedFilters['price[gte]'];
+    }
+    if (this.selectedFilters['price[lte]'] !== 1000) {
+      params['price[lte]'] = this.selectedFilters['price[lte]'];
+    }
+
+    this.categories.filterProducts(params).subscribe({
+      next: (data: any) => {
+        this.allProducts = data.products;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+
   ngOnDestroy(): void {
     this.subscription && this.subscription.forEach((s) => s.unsubscribe());
   }

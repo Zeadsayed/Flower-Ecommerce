@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BestSellerItem } from '../../../../core/interfaces/home-main/BestSeller';
 import { CurrencyPipe } from '@angular/common';
-import { Prosucts } from '../../../../core/interfaces/home-main/Products';
-import { Product } from '../../../../core/interfaces/product-res';
+import { Products } from '../../../../core/interfaces/home-main/Products';
 
 @Component({
   selector: 'popular-card',
