@@ -10,10 +10,11 @@ import { PopularCardComponent } from '../../../../../shared/components/ui/popula
 import { BestSellerService } from '../../../../services/home-main/best-seller.service';
 import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSeller';
 import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-best-seller',
-  imports: [CarouselModule, PopularCardComponent],
+  imports: [CarouselModule, PopularCardComponent,RouterLink],
   templateUrl: './best-seller.component.html',
   styleUrl: './best-seller.component.scss',
   encapsulation: ViewEncapsulation.None,
