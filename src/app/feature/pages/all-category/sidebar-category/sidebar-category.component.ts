@@ -16,6 +16,7 @@ import {
   NgxSliderModule,
   Options,
 } from '@angular-slider/ngx-slider';
+import { FilterProducts } from '../../../../core/interfaces/all-categories/filter-products';
 
 interface Rating {
   stars: number;
@@ -32,6 +33,14 @@ interface Rating {
 export class SidebarCategoryComponent implements OnInit {
   categories: Category[] = [];
   keyword: string = '';
+
+  selectedFilters: FilterProducts = {
+    category: [],
+    rateAvg: [],
+    keyword: '',
+    'price[gte]': 0,
+    'price[lte]': 1000,
+  };
 
   selectedCategories: { category: string[] } = { category: [] };
   selectedRates: { rateAvg: number[] } = { rateAvg: [] };
@@ -65,15 +74,7 @@ export class SidebarCategoryComponent implements OnInit {
   @Output() selectedCategoriesChange = new EventEmitter<{
     [key: string]: string;
   }>(); // Emit object
-  @Output() selectedFilter = new EventEmitter<
-    [
-      { category: string[] },
-      { rateAvg: number[] },
-      { keyword: string },
-      { 'price[gte]': number },
-      { 'price[lte]': number }
-    ]
-  >();
+  @Output() selectedFilter = new EventEmitter<FilterProducts>(); // Expect a single object, not an array
 
   private _categoriesService = inject(CategoriesService);
 
@@ -150,32 +151,35 @@ export class SidebarCategoryComponent implements OnInit {
   }
 
   applyFilters() {
-    // Emit selected filters to the parent
-    this.selectedFilter.emit([
-      this.selectedCategories,
-      this.selectedRates,
-      { keyword: this.keyword },
-      { 'price[gte]': this.priceFrom },
-      { 'price[lte]': this.priceTo },
-    ]);
+    this.selectedFilters = {
+      category: [...this.selectedCategories.category],
+      rateAvg: [...this.selectedRates.rateAvg],
+      keyword: this.keyword,
+      'price[gte]': this.priceFrom,
+      'price[lte]': this.priceTo,
+    };
+
+    this.selectedFilter.emit(this.selectedFilters);
   }
 
   clearFilters() {
-    // Reset filters to default values
+    // Reset filter object
+    this.selectedFilters = {
+      category: [],
+      rateAvg: [],
+      keyword: '',
+      'price[gte]': 0,
+      'price[lte]': 1000,
+    };
+
     this.selectedCategories = { category: [] };
     this.selectedRates = { rateAvg: [] };
     this.keyword = '';
     this.priceFrom = 0;
     this.priceTo = 1000;
 
-    // Emit empty filters to reset parent component
-    this.selectedFilter.emit([
-      { category: [] },
-      { rateAvg: [] },
-      { keyword: '' },
-      { 'price[gte]': 0 },
-      { 'price[lte]': 1000 },
-    ]);
+    // Emit default filters to reset in `AllCategoryComponent`
+    this.selectedFilter.emit(this.selectedFilters);
 
     // Reset all checkboxes
     const checkboxes = document.querySelectorAll<HTMLInputElement>(
@@ -193,7 +197,7 @@ export class SidebarCategoryComponent implements OnInit {
       keywordInput.value = '';
     }
 
-    // Call function to reload all categories/products
+    // Reload all categories/products
     this.getAllCategories();
   }
 

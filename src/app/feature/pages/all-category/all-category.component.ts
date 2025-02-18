@@ -7,6 +7,7 @@ import { PopularCardComponent } from '../../../shared/components/ui/popular-card
 import { SidebarCategoryComponent } from './sidebar-category/sidebar-category.component';
 import { RouterLink } from '@angular/router';
 import { AuthComponent } from '../auth/auth.component';
+import { FilterProducts } from '../../../core/interfaces/all-categories/filter-products';
 
 @Component({
   selector: 'app-all-category',
@@ -23,20 +24,13 @@ import { AuthComponent } from '../auth/auth.component';
 export class AllCategoryComponent {
   private categories = inject(CategoriesService);
 
-  selectedFilters: [
-    { category: string[] },
-    { rateAvg: number[] },
-    { keyword: string },
-    { 'price[gte]': number },
-    { 'price[lte]': number }
-  ] = [
-    { category: [] },
-    { rateAvg: [] },
-    { keyword: '' },
-    { 'price[gte]': 0 },
-    { 'price[lte]': 0 },
-  ];
-
+  selectedFilters: FilterProducts = {
+    category: [],
+    rateAvg: [],
+    keyword: '',
+    'price[gte]': 0,
+    'price[lte]': 1000,
+  };
   allProducts: Products[] = [];
   subscription: Subscription[] = [];
   paginatedProducts: Products[] = [];
@@ -53,28 +47,18 @@ export class AllCategoryComponent {
   }
 
   // Update selected filters and fetch products
-  updateSelectedFilters(
-    filters: [
-      { category: string[] },
-      { rateAvg: number[] },
-      { keyword: string },
-      { 'price[gte]': number },
-      { 'price[lte]': number }
-    ]
-  ) {
-    this.selectedFilters = filters;
-
-    // If all filters are empty, reload all products
+  updateSelectedFilters(filters: FilterProducts) {
+    this.selectedFilters = { ...filters };
     if (
-      filters[0].category.length === 0 &&
-      filters[1].rateAvg.length === 0 &&
-      filters[2].keyword === '' &&
-      filters[3]['price[gte]'] === 0 &&
-      filters[4]['price[lte]'] === 1000
+      filters.category.length === 0 &&
+      filters.rateAvg.length === 0 &&
+      filters.keyword === '' &&
+      filters['price[gte]'] === 0 &&
+      filters['price[lte]'] === 1000
     ) {
-      this.getCategoryProducts(); // Calls API to load all products
+      this.getCategoryProducts();
     } else {
-      this.filterProducts(); // Applies selected filters
+      this.filterProducts();
     }
   }
 
@@ -90,27 +74,22 @@ export class AllCategoryComponent {
   }
 
   filterProducts() {
-    const params: {
-      [key: string]: string | number | boolean | string[] | number[];
-    } = {};
+    const params: Partial<FilterProducts> = {};
 
-    if (this.selectedFilters[0].category.length) {
-      params['category'] = this.selectedFilters[0].category;
+    if (this.selectedFilters.category.length) {
+      params.category = [...this.selectedFilters.category];
     }
-    if (this.selectedFilters[1].rateAvg.length) {
-      params['rateAvg'] = this.selectedFilters[1].rateAvg;
+    if (this.selectedFilters.rateAvg.length) {
+      params.rateAvg = [...this.selectedFilters.rateAvg];
     }
-    if (this.selectedFilters[2].keyword) {
-      // Ensure keyword is accessed correctly
-      params['keyword'] = this.selectedFilters[2].keyword;
+    if (this.selectedFilters.keyword) {
+      params.keyword = this.selectedFilters.keyword;
     }
-    if (this.selectedFilters[3]['price[gte]']) {
-      // Ensure keyword is accessed correctly
-      params['price[gte]'] = this.selectedFilters[3]['price[gte]'];
+    if (this.selectedFilters['price[gte]'] !== 0) {
+      params['price[gte]'] = this.selectedFilters['price[gte]'];
     }
-    if (this.selectedFilters[4]['price[lte]']) {
-      // Ensure keyword is accessed correctly
-      params['price[lte]'] = this.selectedFilters[4]['price[lte]'];
+    if (this.selectedFilters['price[lte]'] !== 1000) {
+      params['price[lte]'] = this.selectedFilters['price[lte]'];
     }
 
     this.categories.filterProducts(params).subscribe({

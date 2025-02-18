@@ -5,18 +5,18 @@ import { Subject, takeUntil } from 'rxjs';
 import { Product, ProductRes } from '../../../core/interfaces/product-res';
 import { ProductService } from '../../../core/services/product-service/product.service';
 import { RelatedProductsComponent } from './related-products/related-products.component';
-import { Prosucts } from '../../../core/interfaces/home-main/Products';
+import { Products } from '../../../core/interfaces/home-main/Products';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule,RelatedProductsComponent],
+  imports: [CommonModule, RelatedProductsComponent],
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-  product!: Product
-  relatedProducts: Prosucts[] = []; // Change from single product to array
+  product!: Product;
+  relatedProducts: Products[] = []; // Change from single product to array
 
   mainImage: string = '';
   quantity: number = 1;
@@ -28,24 +28,23 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(params => {
-        const productId = params.get('id');
-        if (productId) {
-          this.productDetails(productId);
-        }
-      });
+    this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      const productId = params.get('id');
+      if (productId) {
+        this.productDetails(productId);
+      }
+    });
   }
 
   productDetails(id: string): void {
-    this.productService.getProductDetials(id)
+    this.productService
+      .getProductDetials(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: ProductRes) => {
         if (response && response.product) {
           this.product = response.product;
           this.mainImage = response.product.imgCover;
-          
+
           // Load related products after setting the product
           if (this.product.category) {
             this.loadRelatedProducts(this.product.category);
@@ -55,13 +54,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   loadRelatedProducts(categoryId: string): void {
-    this.productService.getRelatedProducts(categoryId)
+    this.productService
+      .getRelatedProducts(categoryId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: any) => {
         this.relatedProducts = response?.products || [];
       });
   }
-  
 
   changeImage(selectedImage: string): void {
     this.mainImage = selectedImage;
@@ -81,7 +80,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     if (this.product) {
       const cartItem = {
         product: this.product,
-        quantity: this.quantity
+        quantity: this.quantity,
       };
     }
   }

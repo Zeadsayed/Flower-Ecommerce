@@ -1,19 +1,24 @@
-import { Component, ElementRef, Input, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Modal } from 'flowbite';
 import { PopularCardComponent } from '../../../../shared/components/ui/popular-card/popular-card.component';
-import { Prosucts } from '../../../../core/interfaces/home-main/Products';
+import { Products } from '../../../../core/interfaces/home-main/Products';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-related-products',
-  imports: [PopularCardComponent, RouterLink,CommonModule],
+  imports: [PopularCardComponent, RouterLink, CommonModule],
   templateUrl: './related-products.component.html',
-  styleUrl: './related-products.component.scss'
+  styleUrl: './related-products.component.scss',
 })
 export class RelatedProductsComponent implements AfterViewInit {
-
-  @Input() relatedProducts: Prosucts[] = []; // Ensure it's an array of `Products`
+  @Input() relatedProducts: Products[] = []; // Ensure it's an array of `Products`
 
   @ViewChild('relatedProductsModal') modalElement!: ElementRef;
   modal!: Modal;
@@ -24,7 +29,7 @@ export class RelatedProductsComponent implements AfterViewInit {
     console.log('Related Products:', this.relatedProducts);
   }
 
-  handleAddToCart(product: Prosucts) {
+  handleAddToCart(product: Products) {
     console.log('Adding to cart:', product);
   }
 
@@ -47,5 +52,4 @@ export class RelatedProductsComponent implements AfterViewInit {
       }
     }
   }
-  
 }
