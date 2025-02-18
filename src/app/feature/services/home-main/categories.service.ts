@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoryResponse } from '../../../core/interfaces/home-main/category';
 import { ApiRoutes } from '../../../core/interfaces/apiRoutes';
-import { ProsuctsResponse } from '../../../core/interfaces/home-main/Products';
+import { ProductsResponse } from '../../../core/interfaces/home-main/Products';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class CategoriesService {
 
   getCategoryProducts(params?: {
     [key: string]: string | number | boolean;
-  }): Observable<ProsuctsResponse> {
+  }): Observable<ProductsResponse> {
     let httpParams = new HttpParams();
 
     // Append each key-value pair dynamically to the HttpParams object
@@ -31,7 +31,7 @@ export class CategoriesService {
         httpParams = httpParams.set(key, params[key].toString());
       });
     }
-    return this.http.get<ProsuctsResponse>(this.env + ApiRoutes.home.products, {
+    return this.http.get<ProductsResponse>(this.env + ApiRoutes.home.products, {
       params: httpParams ? httpParams : undefined,
     });
   }
