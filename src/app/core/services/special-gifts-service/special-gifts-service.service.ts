@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ISpecialGifts } from '../../interfaces/special-gifts-interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpecialGiftsServiceService {
   private _httpClient = inject(HttpClient); // Use inject() to get HttpClient
