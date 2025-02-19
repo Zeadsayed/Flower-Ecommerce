@@ -23,5 +23,8 @@
         } @else if (setPass) {
         <app-set-password (changeState)="toggleState($event)" />
         }
+        @else if (register) {
+        <app-register (changeState)="toggleState($event)" />
+        }
     </div>
 </app-modal>

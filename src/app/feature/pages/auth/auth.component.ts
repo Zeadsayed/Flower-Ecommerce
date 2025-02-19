@@ -5,6 +5,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { ModalComponent } from '../../../shared/components/ui/modal/modal.component';
 import { ModalService } from '../../../shared/services/modal.service';
+import { RegisterComponent } from './register/register.component';
 
 @Component({
   selector: 'app-auth',
@@ -14,6 +15,7 @@ import { ModalService } from '../../../shared/services/modal.service';
     ForgetPasswordComponent,
     VerifyComponent,
     SetPasswordComponent,
+    RegisterComponent,
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
@@ -22,6 +24,7 @@ export class AuthComponent {
   private modalService = inject(ModalService);
 
   isSignIn: boolean = true;
+  register: boolean = false;
   forgetPass: boolean = false;
   verify: boolean = false;
   setPass: boolean = false;
@@ -31,6 +34,7 @@ export class AuthComponent {
   toggleState(state: string) {
     // Reset all states
     this.isSignIn = false;
+    this.register = false;
     this.forgetPass = false;
     this.verify = false;
     this.setPass = false;
@@ -40,6 +44,10 @@ export class AuthComponent {
       case 'login':
         this.isSignIn = true;
         this.title = 'Login to your account';
+        break;
+      case 'register':
+        this.register = true;
+        this.title = 'Create Account';
         break;
       case 'forgetPassword':
         this.forgetPass = true;
@@ -61,6 +69,7 @@ export class AuthComponent {
   resetState() {
     this.title = 'Login to your account';
     this.isSignIn = true;
+    this.register = false;
     this.forgetPass = false;
     this.verify = false;
     this.setPass = false;

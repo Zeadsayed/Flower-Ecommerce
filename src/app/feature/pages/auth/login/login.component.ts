@@ -29,6 +29,7 @@ import { localStorageKeys } from '../../../../core/interfaces/localStorageKeys';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   isSignIn: boolean = true;
+  register: boolean = false;
   forgetPass: boolean = false;
   verify: boolean = false;
   setPass: boolean = false;
@@ -49,6 +50,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   forgetPassword() {
     this.changeState.emit('forgetPassword');
+  }
+  registerAccount() {
+    this.changeState.emit('register');
   }
 
   //#region init form

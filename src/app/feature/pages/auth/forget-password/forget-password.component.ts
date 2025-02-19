@@ -30,6 +30,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 })
 export class ForgetPasswordComponent implements OnInit, OnDestroy {
   isSignIn: boolean = true;
+  register: boolean = false;
   forgetPass: boolean = false;
   verify: boolean = false;
   setPass: boolean = false;

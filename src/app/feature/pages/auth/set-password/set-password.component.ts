@@ -29,6 +29,7 @@ import {
 })
 export class SetPasswordComponent implements OnInit, OnDestroy {
   isSignIn: boolean = true;
+  register: boolean = false;
   forgetPass: boolean = false;
   verify: boolean = false;
   setPass: boolean = false;

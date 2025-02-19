@@ -30,6 +30,7 @@ import { ForgetPassword } from '../../../../core/interfaces/auth/forget-password
 })
 export class VerifyComponent implements OnInit, OnDestroy {
   isSignIn: boolean = true;
+  register: boolean = false;
   forgetPass: boolean = false;
   verify: boolean = false;
   setPass: boolean = false;

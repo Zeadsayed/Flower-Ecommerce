@@ -5,5 +5,4 @@ export interface Register extends Login {
   lastName: string;
   rePassword: string;
   phone: string;
-  gender: string;
 }
