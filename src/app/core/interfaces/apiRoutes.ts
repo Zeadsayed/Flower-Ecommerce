@@ -5,9 +5,12 @@ export const ApiRoutes = {
     bestSeller: 'best-seller',
     products: 'products',
   },
-  product:{
-    products:'products',
+  product: {
+    products: 'products',
     singleProduct: (id: string) => `/products/${id}`,
-    relatedProducts: (categoryid:string) => `/products?category=${categoryid}`,
-  }
+    relatedProducts: (categoryid: string) => `/products?category=${categoryid}`,
+  },
+  checkout: {
+    cart: 'cart',
+  },
 };
