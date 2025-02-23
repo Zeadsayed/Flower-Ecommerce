@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { initFlowbite } from 'flowbite';
+import { AuthComponent } from './feature/pages/auth/auth.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AuthComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -5,7 +5,6 @@ import { AboutUsComponent } from '../home/home-main/about-us/about-us.component'
 import { AboutInstgramComponent } from './about-instgram/about-instgram.component';
 import { TrustCompaniesComponent } from '../home/home-main/trust-companies/trust-companies.component';
 import { ReviewsComponent } from '../../../shared/components/ui/reviews/reviews.component';
-import { AuthComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-about',
@@ -15,7 +14,6 @@ import { AuthComponent } from '../auth/auth.component';
     AboutInstgramComponent,
     TrustCompaniesComponent,
     ReviewsComponent,
-    AuthComponent,
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',

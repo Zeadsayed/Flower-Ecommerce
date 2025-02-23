@@ -8,7 +8,6 @@ import { SpecialGiftsComponent } from './special-gifts/special-gifts.component';
 import { GallaryComponent } from './gallary/gallary.component';
 import { ReviewsComponent } from '../../../../shared/components/ui/reviews/reviews.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { AuthComponent } from '../../auth/auth.component';
 
 @Component({
   selector: 'app-home-main',
@@ -20,7 +19,6 @@ import { AuthComponent } from '../../auth/auth.component';
     SpecialGiftsComponent,
     ReviewsComponent,
     BestSellerComponent,
-    AuthComponent,
     GallaryComponent,
     AboutUsComponent,
   ],
