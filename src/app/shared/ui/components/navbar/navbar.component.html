@@ -6,7 +6,6 @@
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <div class="flex gap-4">
         <img src="icons/search.svg" alt="Search Icon" class="h-6 w-6" />
-        @if (isLogin) {
         <div class="relative">
           <img src="icons/fav.svg" alt="Favorites Icon" class="h-6 w-6" />
           <span
@@ -23,6 +22,7 @@
         </div>
         <div>
 
+          @if (isLogin) {
 
           <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
             class="text-white text-center inline-flex items-center" type="button">
@@ -48,9 +48,9 @@
                 out</a>
             </div>
           </div>
+          }
         </div>
 
-        }
 
       </div>
       @if(!isLogin){
