@@ -1,3 +1,4 @@
+import { CartComponent } from './feature/pages/check-out/cart/cart.component';
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './core/pages/auth-layout/auth-layout.component';
@@ -35,17 +36,23 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
-   
-
       {
         path: 'about',
         canActivate: [],
         loadChildren: () =>
           import('./feature/pages/about/About.route').then((c) => c.routes),
       },
+      {
+        path: '',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/check-out/checkout.route').then(
+            (c) => c.routes
+          ),
+      },
     ],
   },
- 
+
   {
     path: 'auth',
     loadComponent: () =>
@@ -53,5 +60,4 @@ export const routes: Routes = [
         (c) => c.AuthLayoutComponent
       ),
   },
-
 ];
