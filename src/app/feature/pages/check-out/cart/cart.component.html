@@ -1,51 +1,43 @@
 <div class="relative overflow-x-auto">
     <table class="w-full text-sm">
-        <thead class="text-xs text-center uppercase ">
+        <thead class="text-xs text-center uppercase">
             <tr>
-                <th scope="col" class="px-2 py-3">
-                    <span class="heading">IMAGE</span>
-                </th>
-                <th scope="col" class="px-2 py-3">
-                    <span class="heading">PRODUCT NAME</span>
-                </th>
-                <th scope="col" class="px-2 py-3">
-                    <span class="heading">PRICE</span>
-                </th>
-                <th scope="col" class="px-2 py-3">
-                    <span class="heading">QUANTITY</span>
-                </th>
-                <th scope="col" class="px-2 py-3 ">
-                    <span class="heading">SUB TOTAL</span>
-                </th>
-                <th scope="col" class="px-2 py-3">
-                    <span class="heading">ACTION</span>
-                </th>
+                <th scope="col" class="px-2 py-3"><span class="heading">IMAGE</span></th>
+                <th scope="col" class="px-2 py-3"><span class="heading">PRODUCT NAME</span></th>
+                <th scope="col" class="px-2 py-3"><span class="heading">PRICE</span></th>
+                <th scope="col" class="px-2 py-3"><span class="heading">QUANTITY</span></th>
+                <th scope="col" class="px-2 py-3"><span class="heading">SUB TOTAL</span></th>
+                <th scope="col" class="px-2 py-3"><span class="heading">ACTION</span></th>
             </tr>
         </thead>
         <tbody>
             @for (product of cartItems; track $index) {
             <tr class="bg-white text-center">
                 <td class="p-2 flex justify-center">
-                    <img [src]="product.product.imgCover" class="w-24 h-24" alt="Apple Watch">
+                    <img [src]="product?.product?.imgCover" class="w-24 h-24" alt="Product Image">
                 </td>
                 <td class="px-2 py-3">
-                    <div class="text-lg font-bold">{{product.product.title}}</div>
+                    <div class="text-lg font-bold">{{ product?.product?.title }}</div>
                 </td>
                 <td class="px-2 py-3">
-                    ${{product.product.price}}
+                    ${{ product?.product?.price }}
                 </td>
-                <td class="px-2 py-3 ">
+                <td class="px-2 py-3">
                     <div class="flex justify-center">
                         <!-- Quantity Selector -->
-                        <div class="options mb-6 flex flex-col">
+                        <div class="options flex flex-col">
                             <div class="quantity flex items-center gap-2 mt-2">
-                                <button (click)="decreaseQuantity()"
-                                    class="px-4 py-2 bg-secondary text-primary rounded-3xl transition-colors text-sm md:text-sm">
+                                <button (click)="updateQuantity(product, -1)"
+                                    class="px-4 py-2 bg-secondary text-primary rounded-3xl transition-colors text-sm md:text-sm"
+                                    [disabled]="product.quantity <= 1">
                                     -
                                 </button>
-                                <span class="px-4 py-2 text-primary rounded-3xl text-sm md:text-sm font-semibold">
-                                    {{product.quantity}} </span>
-                                <button (click)="increaseQuantity()"
+
+                                <input type="number" [(ngModel)]="product.quantity" (change)="onQuantityChange(product)"
+                                    min="1"
+                                    class="w-16 text-center px-4 py-2 text-primary rounded-3xl text-sm md:text-sm font-semibold border border-none" />
+
+                                <button (click)="updateQuantity(product, 1)"
                                     class="px-4 py-2 bg-secondary text-primary rounded-3xl transition-colors text-sm md:text-sm">
                                     +
                                 </button>
@@ -54,14 +46,16 @@
                     </div>
                 </td>
                 <td class="px-2 py-3 text-center">
-                    ${{product.price}}
+                    ${{ product.subTotal| number:'1.2-2' }}
                 </td>
-                <td class="px-2 py-3">
-                    <a href="#" class="font-medium flex justify-center"><img src="icons/Remove.svg" alt=""></a>
+                <td class="px-2 py-3 ">
+                    <a (click)="RemoveProductFromCart(product?.product?.id)"
+                        class="font-medium flex justify-center cursor-pointer hover:border-b-2">
+                        <img src="icons/Remove.svg" alt="">
+                    </a>
                 </td>
             </tr>
             }
-
         </tbody>
     </table>
 </div>

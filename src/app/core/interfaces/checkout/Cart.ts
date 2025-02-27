@@ -23,4 +23,5 @@ export interface ICartProducts {
   price: number;
   quantity: number;
   _id: string;
+  subTotal?: number; // Add subTotal property
 }
