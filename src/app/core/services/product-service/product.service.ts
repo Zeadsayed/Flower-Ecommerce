@@ -6,22 +6,30 @@ import { Observable } from 'rxjs';
 import { ApiRoutes } from '../../interfaces/apiRoutes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
   private readonly env: string = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getProductDetials(productId: string ): Observable<ProductRes> {
-    return this.http.get<ProductRes>(this.env + ApiRoutes.product.singleProduct(productId));
-
-    
+  getProductDetials(productId: string): Observable<ProductRes> {
+    return this.http.get<ProductRes>(
+      this.env + ApiRoutes.product.singleProduct(productId)
+    );
   }
   getRelatedProducts(categoryId: string): Observable<ProductRes> {
-    return this.http.get<ProductRes>(this.env+ApiRoutes.product.relatedProducts(categoryId));
+    return this.http.get<ProductRes>(
+      this.env + ApiRoutes.product.relatedProducts(categoryId)
+    );
   }
- 
+  updateProductQuantity(
+    productId: string,
+    data: { quantity: number }
+  ): Observable<ProductRes> {
+    return this.http.put<ProductRes>(
+      this.env + ApiRoutes.product.singleProduct(productId),
+      data
+    );
+  }
 }
-
-  

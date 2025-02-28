@@ -12,5 +12,6 @@ export const ApiRoutes = {
   },
   checkout: {
     cart: 'cart',
+    cartProductt: (id?: string) => `cart/${id}`,
   },
 };

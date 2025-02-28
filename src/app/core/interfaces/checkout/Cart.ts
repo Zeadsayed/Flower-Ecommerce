@@ -9,11 +9,19 @@ export interface IUserCart {
 export interface ICart {
   _id: string;
   user: string;
-  cartItems: Products[];
+  cartItems: ICartProducts[];
   discount: number;
   totalPrice: number;
   totalPriceAfterDiscount: number;
   createdAt: string;
   updatedAt: string;
   __v: number;
+}
+
+export interface ICartProducts {
+  product: Products;
+  price: number;
+  quantity: number;
+  _id: string;
+  subTotal?: number; // Add subTotal property
 }

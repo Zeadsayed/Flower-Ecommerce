@@ -8,7 +8,7 @@
       class="absolute inset-0 bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity duration-300">
       <!-- Icons inside the overlay -->
       <div class="flex space-x-4">
-        <button (click)="viewProduct($event)" class="p-2 rounded-full shadow-lg z-30">
+        <button (click)="viewProduct(cardData.id)" class="p-2 rounded-full shadow-lg z-30">
           <img src="icons/eye.svg" class="h-5 w-5" alt="View Icon">
         </button>
         <button (click)="addToWishlist($event)" class="p-2 rounded-full shadow-lg  z-30">
@@ -61,7 +61,7 @@
         <span class="priceAfterDiscount mx-2">{{ cardData.priceAfterDiscount | currency }}</span>
         <span class="price line-through">{{ cardData.price | currency }}</span>
       </div>
-      <button class="bag-icon m-2">
+      <button class="bag-icon m-2" (click)="addToCart(cardData.id,1)">
         <img src="icons/add-cart.svg" class="h-6 w-6" alt="Bag Icon">
       </button>
     </div>

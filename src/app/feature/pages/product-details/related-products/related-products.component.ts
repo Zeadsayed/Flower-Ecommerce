@@ -5,7 +5,6 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Modal } from 'flowbite';
 import { PopularCardComponent } from '../../../../shared/components/ui/popular-card/popular-card.component';
 import { Products } from '../../../../core/interfaces/home-main/Products';
@@ -13,7 +12,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-related-products',
-  imports: [PopularCardComponent, RouterLink, CommonModule],
+  imports: [PopularCardComponent, CommonModule],
   templateUrl: './related-products.component.html',
   styleUrl: './related-products.component.scss',
 })
