@@ -4,12 +4,13 @@ import { AuthApiService } from 'auth-api';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IShippingAddress } from '../../../../core/interfaces/checkout/ShippingAddress';
 import { FormInputComponent } from "../../../../shared/components/ui/form-input/form-input.component";
+import { PaymentInfoComponent } from "../payment-info/payment-info.component";
 
 @Component({
   selector: 'app-belling-address',
   templateUrl: './belling-address.component.html',
   styleUrls: ['./belling-address.component.scss'],
-  imports: [FormInputComponent]
+  imports: [FormInputComponent, PaymentInfoComponent]
 })
 export class BellingAddressComponent implements OnInit {
 
@@ -54,37 +55,5 @@ export class BellingAddressComponent implements OnInit {
     }
   }
 
-  getCashOrder(): void {
-    if(this.userForm.value.invaild)return ;
-
-    const data: IShippingAddress = this.userForm.value;
-    this._CheckoutService.cashOrder(data).subscribe({
-      next: (response) => {
-        console.log('Cash order response:', response);
-      },
-      error: (err) => {
-        console.error('Error placing cash order:', err);
-      },
-      complete: () => {
-        console.log('Cash order request completed.');
-      }
-    });
-  }
-
-  getOnlinePayment(): void {
-    if(this.userForm.value.invaild)return ;
-    const data: IShippingAddress = this.userForm.value;
-    this._CheckoutService.onlinePayement(data).subscribe({
-      next: (response) => {
-        console.log('Online payment response:', response);
-      },
-      error: (err) => {
-        console.error('Error during online payment:', err);
-      },
-      complete: () => {
-        console.log('Online payment request completed.');
-      }
-    });
-  }
 
 }
