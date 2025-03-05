@@ -12,5 +12,10 @@ export const ApiRoutes = {
   },
   checkout: {
     cart: 'cart',
+    orders:'orders',
+    checkout:`/orders/checkout`
+
+
+
   },
 };
