@@ -16,6 +16,14 @@ import { CommonModule } from '@angular/common';
 export class CartComponent implements OnInit {
   cartData!: ICart;
   cartItems: ICartProducts[] = [];
+  tableHeaders = [
+    'Image',
+    'Product Name',
+    'Price',
+    'Quantity',
+    'Subtotal',
+    'Actions',
+  ];
 
   private _checkoutService = inject(CheckoutService);
 

@@ -2,12 +2,9 @@
     <table class="w-full text-sm">
         <thead class="text-xs text-center uppercase">
             <tr>
-                <th scope="col" class="px-2 py-3"><span class="heading">IMAGE</span></th>
-                <th scope="col" class="px-2 py-3"><span class="heading">PRODUCT NAME</span></th>
-                <th scope="col" class="px-2 py-3"><span class="heading">PRICE</span></th>
-                <th scope="col" class="px-2 py-3"><span class="heading">QUANTITY</span></th>
-                <th scope="col" class="px-2 py-3"><span class="heading">SUB TOTAL</span></th>
-                <th scope="col" class="px-2 py-3"><span class="heading">ACTION</span></th>
+                @for (heading of tableHeaders; track $index) {
+                <th scope="col" class="px-2 py-3"><span class="heading">{{heading}}</span></th>
+                }
             </tr>
         </thead>
         <tbody>
