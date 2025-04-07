@@ -50,6 +50,38 @@ export const routes: Routes = [
             (c) => c.routes
           ),
       },
+      {
+        path: 'delivery',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/static/delivery/delivery.route').then(
+            (c) => c.routes
+          ),
+      },
+      {
+        path: 'faqs',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/static/faqs/faqs.route').then(
+            (c) => c.routes
+          ),
+      },
+      {
+        path: 'policy',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/static/policy/policy.route').then(
+            (c) => c.routes
+          ),
+      },
+      {
+        path: 'stores',
+        canActivate: [],
+        loadChildren: () =>
+          import('./feature/pages/static/stores/stores.route').then(
+            (c) => c.routes
+          ),
+      },
     ],
   },
 
