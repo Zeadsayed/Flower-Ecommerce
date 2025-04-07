@@ -6,7 +6,6 @@
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <div class="flex gap-4">
         <img src="icons/search.svg" alt="Search Icon" class="h-6 w-6" />
-        @if (isLogin) {
         <div class="relative">
           <img src="icons/fav.svg" alt="Favorites Icon" class="h-6 w-6" />
           <span
@@ -21,18 +20,43 @@
             5
           </span>
         </div>
-        }
+        <div>
+
+          @if (isLogin) {
+
+          <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+            class="text-white text-center inline-flex items-center" type="button">
+            <img src="icons/Icon.svg" alt="Search Icon" class="h-6 w-6" />
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="dropdownDivider"
+            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+              <div>{{userData.firstName}} {{userData.lastName}}</div>
+              <div class="font-medium truncate">{{userData.email}}</div>
+            </div>
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+              <li>
+                <a href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+              </li>
+            </ul>
+            <div class="py-2">
+              <a (click)="logout()"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                out</a>
+            </div>
+          </div>
+          }
+        </div>
+
 
       </div>
       @if(!isLogin){
       <div>
         <button type="button" class="login w-20 h-11 m-2.5 rounded-3xl text-base font-medium leading-7 text-center"
           (click)="openLoginModal()">Login</button>
-      </div>
-      } @else {
-      <div>
-        <button type="button" class="login w-20 h-11 m-2.5 rounded-3xl text-base font-medium leading-7 text-center"
-          (click)="logout()">Logout</button>
       </div>
       }
 

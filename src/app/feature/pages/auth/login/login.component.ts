@@ -55,6 +55,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.changeState.emit('register');
   }
 
+  //#region  user info
+  getLoggedUser() {
+    let sub = this._AuthApiService.userInfo().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
   //#region init form
   initLoginForm(): void {
     this.loginForm = new FormGroup<LoginForm>({
@@ -103,6 +115,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.loading = false;
           this.onModalClose();
           window.location.reload();
+          this.getLoggedUser();
         }
       },
       error: (err) => {

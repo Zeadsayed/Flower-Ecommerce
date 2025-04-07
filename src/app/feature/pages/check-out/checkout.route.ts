@@ -6,6 +6,7 @@ export const routes: Routes = [
   {
     path: '',
     component: CheckOutComponent,
+    data: { summaryData: {} }, // Initial placeholder
     children: [
       {
         path: 'cart',

@@ -6,11 +6,10 @@ import { BestSellerItem } from '../../../../../core/interfaces/home-main/BestSel
 import { Products } from '../../../../../core/interfaces/home-main/Products';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-popular-items',
-  imports: [PopularCardComponent, CommonModule, RouterLink],
+  imports: [PopularCardComponent, CommonModule],
   templateUrl: './popular-items.component.html',
   styleUrl: './popular-items.component.scss',
 })

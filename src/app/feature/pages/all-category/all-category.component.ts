@@ -9,7 +9,7 @@ import { FilterProducts } from '../../../core/interfaces/all-categories/filter-p
 
 @Component({
   selector: 'app-all-category',
-  imports: [PopularCardComponent, SidebarCategoryComponent, RouterLink],
+  imports: [PopularCardComponent, SidebarCategoryComponent],
   templateUrl: './all-category.component.html',
   styleUrl: './all-category.component.scss',
   encapsulation: ViewEncapsulation.None,
