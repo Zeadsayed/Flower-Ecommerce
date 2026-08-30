@@ -1,59 +1,34 @@
 # FlowerEcommerce
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.1.
+A team-built Angular flower e-commerce storefront with a product catalog, category browsing, cart, checkout, and authentication.
 
-## Development server
+Live demo: https://zeadsayed.github.io/Flower-Ecommerce/
 
-To start a local development server, run:
+## Built by
+
+A collaborative team project, built with [khaledA7med](https://github.com/khaledA7med), [Seif-Emam](https://github.com/Seif-Emam), [nesmafayz](https://github.com/nesmafayz), and [Zeadsayed](https://github.com/Zeadsayed).
+
+## Features
+
+- Product catalog and category browsing
+- Product details
+- Shopping cart and checkout
+- Authentication (sign up / sign in)
+- About and static pages
+
+## Tech stack
+
+- Angular
+- TypeScript
+- Tailwind CSS
+
+## Getting started
 
 ```bash
+git clone https://github.com/Zeadsayed/Flower-Ecommerce.git
+cd Flower-Ecommerce
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Navigate to `http://localhost:4200/`.
